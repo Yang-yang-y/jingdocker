@@ -1,0 +1,40 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:5.6
+    environment: 
+      MYSQL_DATABASE: jingsaas
+      MYSQL_USER: jingfree
+      MYSQL_PASSWORD: passw0rd
+      MYSQL_ROOT_PASSWORD: passw0rd
+    ports: 
+      - "3306:3306"
+  redis:
+    image: redis:alpine
+    ports: 
+      - "6379:6379"
+  php-fpm:
+    #build: php
+    image: larryz/php-fpm-composer:1.1
+    links: 
+      - mysql
+      - redis
+    ports:
+      - "9000:9000"
+    volumes: 
+      - "../jing-saas/:/var/www/html"
+    
+  nginx:
+    image: nginx:alpine
+    links: 
+      - php-fpm
+    depends_on: 
+      - redis
+      - php-fpm
+    ports:
+      - "80:80"
+    volumes:
+      - "./nginx/log:/var/log/nginx"
+      - "./nginx/sites-available:/etc/nginx/sites-available"
+      - "./nginx/nginx.conf:/etc/nginx/nginx.conf:ro"
+      - "../jing-saas/:/var/www/html"
