@@ -2,6 +2,10 @@ version: '3'
 services:
   mysql:
     image: mysql:5.6
+    command: 
+      - mysqldmysqld
+      - "--character-set-server=utf8mb4"
+      - "--collation-server=utf8mb4_unicode_ci"
     environment: 
       MYSQL_DATABASE: jingsaas
       MYSQL_USER: jingfree
@@ -14,8 +18,8 @@ services:
     ports: 
       - "6379:6379"
   php-fpm:
-    #build: php
-    image: larryz/php-fpm-composer:1.1
+    build: php
+    #mage: larryz/php-fpm-composer:1.1
     links: 
       - mysql
       - redis
