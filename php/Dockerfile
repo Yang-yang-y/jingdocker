@@ -3,7 +3,7 @@ MAINTAINER Larryzhang <zhangyang@jingfree.com>
 # modify the repo to aliyun
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/' /etc/apk/repositories
 # install composer
-RUN apk --no-cache add curl git subversion openssh openssl mercurial tini bash vim
+RUN apk --no-cache add curl git  openssh openssl  tini bash vim freetype-dev libjpeg-turbo-dev libpng-dev
 #RUN apk --no-cache add curl bash vim 
 #RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 COPY composer-installer.php composer-setup.php
@@ -23,7 +23,8 @@ RUN pecl install redis && \
   #docker-php-ext-install mbstring && \
   docker-php-ext-install tokenizer && \
   docker-php-ext-install opcache && \
-
+  docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ && \
+  docker-php-ext-install  gd && \
   docker-php-source delete
 
 RUN pecl install xdebug
@@ -37,7 +38,7 @@ ADD ./laravel.pool.conf /usr/local/etc/php-fpm.d/
 #RUN usermod -u 1000 www-data
 #RUN php5enmod mcrypt
 COPY ./opcache.ini /usr/local/etc/php/conf.d/opcache.ini
-COPY ./xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+#COPY ./xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
 #EXPOSE 22
 COPY ./docker-php-entrypoint.sh /usr/local/bin/docker-php-entrypoint.sh

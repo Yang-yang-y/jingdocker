@@ -20,8 +20,8 @@ services:
     ports: 
       - "6379:6379"
   php-fpm:
-    #build: php
-    image: larryz/php-fpm-composer:1.2
+    build: php
+    #image: larryz/php-fpm-composer:1.1
     #image: registry.cn-hangzhou.aliyuncs.com/freecart/jingdocer
     links: 
       - mysql
@@ -32,6 +32,7 @@ services:
       - "SYS_PTRACE"
     volumes: 
       - "../jing-saas/:/var/www/html"
+      - "../piwik/:/var/www/piwik"
   nginx:
     image: nginx:alpine
     links: 
@@ -41,9 +42,11 @@ services:
       - php-fpm
     ports:
       - "40080:80"
+      - "1080:1080"
     volumes:
       - "./nginx/log:/var/log/nginx"
       - "./nginx/sites-available:/etc/nginx/sites-available"
       - "./nginx/conf.d:/etc/nginx/conf.d"
       - "./nginx/nginx.conf:/etc/nginx/nginx.conf:ro"
       - "../jing-saas/:/var/www/html"
+      - "../piwik/:/var/www/piwik"
