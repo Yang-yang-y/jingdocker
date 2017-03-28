@@ -20,9 +20,9 @@ services:
     #ports: 
     #  - "6379:6379"
   php-fpm:
-    build: php
+    #build: php
     #image: larryz/php-fpm-composer:1.1
-    #image: registry.cn-hangzhou.aliyuncs.com/freecart/jingdocer
+    image: registry.cn-hangzhou.aliyuncs.com/freecart/jingdocer
     links: 
       - mysql
       - redis
