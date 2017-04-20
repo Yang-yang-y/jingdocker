@@ -22,7 +22,7 @@ services:
   php-fpm:
     #build: php
     #image: larryz/php-fpm-composer:1.1
-    image: registry.cn-hangzhou.aliyuncs.com/freecart/jingdocer
+    image: registry.cn-hangzhou.aliyuncs.com/freecart/jingdocer:1.4
     links: 
       - mysql
       - redis

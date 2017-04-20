@@ -21,8 +21,8 @@ services:
       - "6379:6379"
   php-fpm:
     #build: php
-    image: larryz/php-fpm-composer:1.2
-    #image: registry.cn-hangzhou.aliyuncs.com/freecart/jingdocer
+    #image: larryz/php-fpm-composer:1.2
+    image: registry.cn-hangzhou.aliyuncs.com/freecart/jingdocer:1.4
     links: 
       - mysql
       - redis

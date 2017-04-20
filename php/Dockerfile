@@ -3,13 +3,14 @@ MAINTAINER Larryzhang <zhangyang@jingfree.com>
 # modify the repo to aliyun
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/' /etc/apk/repositories
 # install composer
-RUN apk --no-cache add curl git  openssh openssl  tini bash vim  freetype libpng libjpeg-turbo freetype-dev libpng-dev libjpeg-turbo-dev
+RUN apk --no-cache add curl git  openssh openssl  tini bash vim  freetype libpng libjpeg-turbo freetype-dev libpng-dev libjpeg-turbo-dev 
 #RUN apk --no-cache add curl bash vim 
 #RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 COPY composer-installer.php composer-setup.php
 RUN php composer-setup.php
 RUN php -r "unlink('composer-setup.php');"
 RUN mv composer.phar /usr/local/bin/composer
+RUN apk --no-cache add 	libxml2-dev
 
 # RUN apk --update --no-cache add php7-mcrypt php7-gd php7-opcache php7-soap php7-pdo \
 #         php7-pdo_mysql php7-tokenizer
@@ -29,6 +30,11 @@ RUN pecl install redis && \
     --with-png-dir=/usr/include/ \
     --with-jpeg-dir=/usr/include/ && \
   docker-php-ext-install  gd && \
+  docker-php-ext-configure xmlrpc \
+
+      --with-libxml-dir=/usr/include/ && \
+
+  docker-php-ext-install xmlrpc && \
   docker-php-source delete
 
 RUN pecl install xdebug
@@ -47,6 +53,8 @@ COPY ./opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 #EXPOSE 22
 COPY ./docker-php-entrypoint.sh /usr/local/bin/docker-php-entrypoint.sh
 #COPY docker-entrypoint.sh /docker-entrypoint.sh
+
+RUN composer config -g repo.packagist composer https://packagist.phpcomposer.com
 
 
 
