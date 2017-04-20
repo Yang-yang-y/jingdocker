@@ -2,18 +2,17 @@ FROM php:7.1.3-fpm-alpine
 MAINTAINER Larryzhang <zhangyang@jingfree.com>
 # modify the repo to aliyun
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/' /etc/apk/repositories
-# install composer
 RUN apk --no-cache add curl git  openssh openssl  tini bash vim  freetype libpng libjpeg-turbo freetype-dev libpng-dev libjpeg-turbo-dev 
-#RUN apk --no-cache add curl bash vim 
-#RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-COPY composer-installer.php composer-setup.php
-RUN php composer-setup.php
-RUN php -r "unlink('composer-setup.php');"
-RUN mv composer.phar /usr/local/bin/composer
+
+# COPY composer-installer.php composer-setup.php
+# RUN php composer-setup.php
+# RUN php -r "unlink('composer-setup.php');"
+# RUN mv composer.phar /usr/local/bin/composer
+COPY composer /usr/local/bin/composer
+
 RUN apk --no-cache add 	libxml2-dev
 
-# RUN apk --update --no-cache add php7-mcrypt php7-gd php7-opcache php7-soap php7-pdo \
-#         php7-pdo_mysql php7-tokenizer
+
 RUN docker-php-source extract && \
   apk add  --no-cache autoconf g++ make  
 RUN pecl install redis && \
@@ -21,7 +20,6 @@ RUN pecl install redis && \
   docker-php-ext-install mysqli && \
   docker-php-ext-install pdo && \
   docker-php-ext-install pdo_mysql && \
-  #docker-php-ext-install mbstring && \
   docker-php-ext-install tokenizer && \
   docker-php-ext-install opcache && \
   docker-php-ext-configure gd \
