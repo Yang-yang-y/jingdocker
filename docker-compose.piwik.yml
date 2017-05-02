@@ -53,4 +53,17 @@ services:
       - "../jing-saas/:/var/www/html"
       - "../piwik/:/var/www/piwik"
       - "../freecart/:/var/www/freecart"
+  nodejs:
+    build: node
+    #image: node:alpine
+    links: 
+      - mysql
+      - redis
+      - nginx
+    ports:
+      - "8080:8080"
+    volumes:
+      - "../jingweb:/usr/src/app"
+    environment:
+      SCRIPT: "dev"
 

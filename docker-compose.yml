@@ -47,3 +47,16 @@ services:
       - "./nginx/conf.d:/etc/nginx/conf.d"
       - "./nginx/nginx.conf:/etc/nginx/nginx.conf:ro"
       - "../jing-saas/:/var/www/html"
+  nodejs:
+    build: node
+    #image: node:alpine
+    links: 
+      - mysql
+      - redis
+      - nginx
+    ports:
+      - "8080:8080"
+    volumes:
+      - "../jingweb:/usr/src/app"
+    environment:
+      SCRIPT: "dev"

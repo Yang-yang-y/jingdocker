@@ -29,9 +29,7 @@ RUN pecl install redis && \
     --with-jpeg-dir=/usr/include/ && \
   docker-php-ext-install  gd && \
   docker-php-ext-configure xmlrpc \
-
-      --with-libxml-dir=/usr/include/ && \
-
+    --with-libxml-dir=/usr/include/ && \
   docker-php-ext-install xmlrpc && \
   docker-php-source delete
 
