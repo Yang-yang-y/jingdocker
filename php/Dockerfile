@@ -31,11 +31,11 @@ RUN pecl install redis && \
   docker-php-ext-configure xmlrpc \
     --with-libxml-dir=/usr/include/ && \
   docker-php-ext-install xmlrpc && \
-  pecl install mongodb && \
   docker-php-ext-enable mongodb \
   docker-php-source delete
 
 RUN pecl install xdebug
+RUN pecl install mongodb
 
 
 ADD ./laravel.ini /usr/local/etc/php/conf.d
