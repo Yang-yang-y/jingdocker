@@ -15,6 +15,14 @@ services:
       - "3306:3306"
     volumes: 
       - "./mysql/data:/var/lib/mysql"
+  mongo:
+    image: mongo:3.4.2
+    command: 
+      - mongod
+    ports: 
+      - "27017:27017"
+    volumes: 
+      - "./mongo/data:/data/db"
   redis:
     image: redis:alpine
     ports: 
@@ -22,10 +30,11 @@ services:
   php-fpm:
     #build: php
     #image: larryz/php-fpm-composer:1.2
-    image: registry.cn-hangzhou.aliyuncs.com/freecart/jingdocer:1.4
+    image: registry.cn-hangzhou.aliyuncs.com/freecart/jingdocer:1.5
     links: 
       - mysql
       - redis
+      - mongo  
     ports:
       - "9000:9000"
     cap_add: 

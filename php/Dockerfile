@@ -2,8 +2,8 @@ FROM php:7.1.3-fpm-alpine
 MAINTAINER Larryzhang <zhangyang@jingfree.com>
 # modify the repo to aliyun
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/' /etc/apk/repositories
-RUN apk --no-cache add curl git  openssh openssl  tini bash vim  freetype libpng libjpeg-turbo freetype-dev libpng-dev libjpeg-turbo-dev 
-
+RUN apk --no-cache add curl git  openssh openssl  tini bash vim  freetype libpng libjpeg-turbo freetype-dev libpng-dev libjpeg-turbo-dev  pkgconfig
+RUN apk --no-cache add openssl-dev
 # COPY composer-installer.php composer-setup.php
 # RUN php composer-setup.php
 # RUN php -r "unlink('composer-setup.php');"
@@ -31,6 +31,8 @@ RUN pecl install redis && \
   docker-php-ext-configure xmlrpc \
     --with-libxml-dir=/usr/include/ && \
   docker-php-ext-install xmlrpc && \
+  pecl install mongodb && \
+  docker-php-ext-enable mongodb \
   docker-php-source delete
 
 RUN pecl install xdebug
