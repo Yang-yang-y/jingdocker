@@ -42,6 +42,7 @@ services:
       - "../jing-saas/:/var/www/html"
       - "../piwik/:/var/www/piwik"
       - "../freecart/:/var/www/freecart"
+      - "../jflaravel/:/var/www/jflaravel"
   nginx:
     image: nginx:alpine
     links: 
@@ -51,6 +52,7 @@ services:
       - php-fpm
     ports:
       - "40080:80"
+      - "40081:40081"
       - "1080:1080"
       - "2080:2080"
     volumes:
@@ -61,6 +63,7 @@ services:
       - "../jing-saas/:/var/www/html"
       - "../piwik/:/var/www/piwik"
       - "../freecart/:/var/www/freecart"
+      - "../jflaravel/:/var/www/jflaravel"
   nodejs:
     build: node
     #image: node:alpine
