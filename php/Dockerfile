@@ -65,4 +65,4 @@ RUN composer config -g repo.packagist composer https://packagist.phpcomposer.com
 RUN apk --no-cache add python3 python3-dev py-pip build-base
 #for scrapy
 RUN apk --no-cache add libxml2 libxslt libffi-dev libxslt-dev
-RUN pip3 install dateutils pymongo scrapy
+RUN pip3 install  --timeout 30  --retries 5 dateutils pymongo scrapy

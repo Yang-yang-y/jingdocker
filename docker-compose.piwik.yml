@@ -43,6 +43,7 @@ services:
       - "../piwik/:/var/www/piwik"
       - "../freecart/:/var/www/freecart"
       - "../jflaravel/:/var/www/jflaravel"
+      - "../jing-scrapy/:/root/jing-scrapy"
   nginx:
     image: nginx:alpine
     links: 
