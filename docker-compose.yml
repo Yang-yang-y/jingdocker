@@ -49,6 +49,7 @@ services:
       - "SYS_PTRACE"
     volumes: 
       - "../jing-saas/:/var/www/html"
+      - "../jing-scrapy/:/root/jing-scrapy"
   nginx:
     image: nginx:alpine
     links: 
