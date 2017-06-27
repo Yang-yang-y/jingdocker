@@ -42,7 +42,6 @@ services:
       - "../jing-saas/:/var/www/html"
       - "../piwik/:/var/www/piwik"
       - "../freecart/:/var/www/freecart"
-      - "../jflaravel/:/var/www/jflaravel"
       - "../jing-scrapy/:/root/jing-scrapy"
   nginx:
     image: nginx:alpine
@@ -53,7 +52,6 @@ services:
       - php-fpm
     ports:
       - "40080:80"
-      - "40081:40081"
       - "1080:1080"
       - "2080:2080"
     volumes:
@@ -64,7 +62,6 @@ services:
       - "../jing-saas/:/var/www/html"
       - "../piwik/:/var/www/piwik"
       - "../freecart/:/var/www/freecart"
-      - "../jflaravel/:/var/www/jflaravel"
   nodejs:
     build: node
     #image: node:alpine
@@ -78,4 +75,18 @@ services:
       - "../jingweb:/usr/src/app"
     environment:
       SCRIPT: "dev"
-
+  jfweb:
+    build: node
+    #image: node:alpine
+    links: 
+      - mysql
+      - redis
+      - nginx
+    ports:
+      - "3100:3100"
+    volumes:
+      - "../jfweb:/usr/src/app" 
+    environment:
+      SCRIPT: "dev"
+    command:
+      - gulp
