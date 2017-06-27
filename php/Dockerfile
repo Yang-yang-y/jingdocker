@@ -40,8 +40,8 @@ RUN apk --no-cache add openssl-dev
 RUN pecl install mongodb
 RUN docker-php-ext-enable mongodb
 RUN pecl install xdebug
-RUN pecl install zip && \
-    docker-php-ext-enable zip \
+RUN docker-php-ext-install zip
+     
 
 ADD ./laravel.ini /usr/local/etc/php/conf.d
 ADD ./laravel.pool.conf /usr/local/etc/php-fpm.d/
