@@ -11,6 +11,7 @@ services:
       MYSQL_USER: jingfree
       MYSQL_PASSWORD: passw0rd
       MYSQL_ROOT_PASSWORD: passw0rd
+      TZ: "Asia/Shanghai"
     ports: 
       - "43306:3306"
     volumes: 
