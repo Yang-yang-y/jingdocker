@@ -55,6 +55,7 @@ services:
       - "40080:80"
       - "1080:1080"
       - "2080:2080"
+      - "4080:4080"
     volumes:
       - "./nginx/log:/var/log/nginx"
       - "./nginx/sites-available:/etc/nginx/sites-available"
@@ -63,6 +64,8 @@ services:
       - "../jing-saas/:/var/www/html"
       - "../piwik/:/var/www/piwik"
       - "../freecart/:/var/www/freecart"
+      - "../jingweb/dist:/var/www/dist"
+
   nodejs:
     build: node
     #image: node:alpine
