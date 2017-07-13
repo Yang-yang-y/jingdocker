@@ -87,7 +87,7 @@ services:
       - redis
       - nginx
     ports:
-      - "3100:3100"
+      - "3200:3100"
     volumes:
       - "../jfweb:/usr/src/app" 
     environment:
