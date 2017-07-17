@@ -79,6 +79,7 @@ services:
       - "../jingweb:/usr/src/app"
     environment:
       SCRIPT: "dev"
+      SUBPROJECT: "jingcms"
   jfweb:
     build: node
     #image: node:alpine

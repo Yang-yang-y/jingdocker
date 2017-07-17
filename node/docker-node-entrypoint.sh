@@ -1,9 +1,9 @@
 #!/bin/sh
 set -e
+cd /usr/src/app/$SUBPROJECT
 
 # run composer install
-if [ ! -d "/usr/src/app/node_modules" ]; then
-  cd /usr/src/app/
+if [ ! -d "/usr/src/app/$SUBPROJECT/node_modules" ]; then
   npm install
 fi 
 
