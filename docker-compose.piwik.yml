@@ -78,7 +78,7 @@ services:
     volumes:
       - "../jingweb:/usr/src/app"
     environment:
-      SCRIPT: "dev"
+      SCRIPT: "test"
       SUBPROJECT: "jingcms"
   jfweb:
     build: node
