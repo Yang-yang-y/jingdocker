@@ -58,6 +58,8 @@ services:
       - "./nginx/conf.d:/etc/nginx/conf.d"
       - "./nginx/nginx.conf:/etc/nginx/nginx.conf:ro"
       - "../jing-saas/:/var/www/html"
+      - "../jingweb/:/var/www/jingweb"
+
   nodejs:
     build: node
     #image: node:alpine
@@ -66,22 +68,8 @@ services:
       - redis
       - nginx
     ports:
-      - "8080:8080"
+      - "8081:8081"
     volumes:
       - "../jingweb:/usr/src/app"
     environment:
-      SCRIPT: "dev"
-      SUBPROJECT: "jingcms"
-  jfweb:
-    build: node
-    #image: node:alpine
-    links: 
-      - mysql
-      - redis
-      - nginx
-    ports:
-      - "3100:3100"
-    volumes:
-      - "../jfweb:/usr/src/app" 
-    environment:
-      SCRIPT: "dev"
+      SCRIPT: "test"
