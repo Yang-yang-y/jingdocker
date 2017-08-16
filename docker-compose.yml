@@ -36,6 +36,9 @@ services:
       - mysql
       - redis
       - mongo
+    env_file:
+      - laravel.env
+
     ports:
       - "9000:9000"
     cap_add:
@@ -73,3 +76,5 @@ services:
       - "../jingweb:/usr/src/app"
     environment:
       SCRIPT: "test"
+    env_file:
+      - jfweb.env
