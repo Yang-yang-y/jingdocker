@@ -37,7 +37,7 @@ services:
       - redis
       - mongo
     env_file:
-      - jingsaas.env
+      - php.env
 
     ports:
       - "9000:9000"
@@ -77,4 +77,4 @@ services:
     environment:
       SCRIPT: "test"
     env_file:
-      - jfweb.env
+      - node.env
