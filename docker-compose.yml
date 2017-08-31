@@ -31,14 +31,10 @@ services:
   php-fpm:
 #    build: php
     #image: larryz/php-fpm-composer:1.2
-    image: registry.cn-hangzhou.aliyuncs.com/freecart/jingdocer:1.6
+    image: registry.cn-hangzhou.aliyuncs.com/freecart/jingdocer:1.7
     links:
       - mysql
       - redis
-      - mongo
-    depends_on:
-      - redis
-      - mysql
       - mongo
     env_file:
       - php.env
