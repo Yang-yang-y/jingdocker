@@ -31,13 +31,13 @@ services:
   php-fpm:
 #    build: php
     #image: larryz/php-fpm-composer:1.2
-    image: registry.cn-hangzhou.aliyuncs.com/homehub/jingdocker:1.7
+    image: registry.cn-hangzhou.aliyuncs.com/freecart/jingdocer:1.7
     links:
       - mysql
       - redis
       - mongo
     env_file:
-      - php.env
+      - ./php/php.env
     ports:
       - "9000:9000"
     cap_add:
@@ -83,4 +83,4 @@ services:
     volumes:
       - "../jingweb:/usr/src/app"
     env_file:
-      - node.env
+      - ./node/node.env
