@@ -31,7 +31,7 @@ services:
   php-fpm:
 #    build: php
     #image: larryz/php-fpm-composer:1.2
-    image: registry.cn-hangzhou.aliyuncs.com/freecart/jingdocer:1.7
+    image: registry.cn-hangzhou.aliyuncs.com/homeweb/jingdocer:1.7
     links:
       - mysql
       - redis
@@ -39,7 +39,7 @@ services:
     env_file:
       - ./php/php.env
     ports:
-      - "9000:9000"
+      - "${PHP_PORT}:9000"
     cap_add:
       - "SYS_PTRACE"
     volumes:
