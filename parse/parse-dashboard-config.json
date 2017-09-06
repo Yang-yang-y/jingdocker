@@ -1,0 +1,26 @@
+{
+    "apps": [
+      {
+        "serverURL": "http://localhost:1337/parse",
+        "appId": "jingfree",
+        "masterKey": "jingfree",
+        "appName": "jingfree"
+      }
+    ],
+    "users": [
+        {
+          "user":"user1",
+          "pass":"pass"
+        },
+        {
+          "user":"user2",
+          "pass":"pass"
+        }
+      ],
+      "useEncryptedPasswords": false ,
+      "allowInsecureHTTP": true
+      
+  }
+
+
+  
