@@ -47,6 +47,8 @@ services:
       - "../piwik/:/var/www/piwik"
       - "../freecart/:/var/www/freecart"
       - "../jing-scrapy/:/root/jing-scrapy"
+      - "../jingweb/:/var/www/jingweb"
+
   nginx:
     image: nginx:alpine
     links:
