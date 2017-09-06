@@ -56,6 +56,7 @@ services:
       - "1080:1080"
       - "2080:2080"
       - "4080:4080"
+      - "5080:5080"
     volumes:
       - "./nginx/log:/var/log/nginx"
       - "./nginx/sites-available:/etc/nginx/sites-available"

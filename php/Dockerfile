@@ -1,4 +1,4 @@
-FROM php:7.1.3-fpm-alpine
+FROM php:7.2-fpm-alpine
 MAINTAINER Larryzhang <zhangyang@jingfree.com>
 # modify the repo to aliyun
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/' /etc/apk/repositories
