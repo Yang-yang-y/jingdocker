@@ -5,7 +5,7 @@ set -e
 if [ ! -d "/var/www/html/vendor" ]; then
   cd /var/www/html
   composer install
-fi 
+fi
 
 nohup php artisan queue:work 1>storage/logs/queue.log 2>&1 &
 

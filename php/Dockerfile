@@ -54,7 +54,9 @@ COPY ./opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 #COPY ./xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
 #EXPOSE 22
-COPY ./docker-php-entrypoint.sh /usr/local/bin/docker-php-entrypoint.sh
+COPY ./docker-php-entrypoint.sh /usr/local/bin/docker-php-entrypoint
+RUN chmod 0777 /usr/local/bin/docker-php-entrypoint
+
 #COPY docker-entrypoint.sh /docker-entrypoint.sh
 
 RUN composer config -g repo.packagist composer https://packagist.phpcomposer.com
