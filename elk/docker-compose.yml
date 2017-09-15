@@ -18,7 +18,8 @@ services:
     volumes:
       - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
       - ./logstash/pipeline:/usr/share/logstash/pipeline
-      # - ./logstash/pipeline:/usr/share/logstash/pipeline
+      - /Users/spider/web/saas/jingdocker/nginx/log/access.log:/logstash/nginx-access.log
+      - ./logstash/pattern:/pattern
     ports:
       - "5000:5000"
     environment:
