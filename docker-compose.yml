@@ -37,7 +37,7 @@ services:
       - redis
       - mongo
     env_file:
-      - ./php/php.env
+      - ./php/jingsaas.env
     ports:
       - "${PHP_PORT}:9000"
     cap_add:
@@ -73,4 +73,4 @@ services:
     volumes:
       - "../jingweb:/usr/src/app"
     env_file:
-      - ./node/node.env
+      - ./node/jingweb.env
