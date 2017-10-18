@@ -49,8 +49,8 @@ services:
       - "../jing-scrapy/:/root/jing-scrapy"
       - "../jingweb/:/var/www/jingweb"
 
-  nginx:
-    image: nginx:alpine
+  openresty:
+    image: openresty/openresty
     links:
       - php-fpm
     depends_on:
@@ -64,14 +64,16 @@ services:
       - "${NGINX_JINGHOME_HOST_HTTP_PORT}:5080"
 
     volumes:
-      - "./nginx/log:/var/log/nginx"
+      - "./nginx/logs:/usr/local/openresty/nginx/logs"
       - "./nginx/sites-available:/etc/nginx/sites-available"
       - "./nginx/conf.d:/etc/nginx/conf.d"
-      - "./nginx/nginx.conf:/etc/nginx/nginx.conf:ro"
+      - "./nginx/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf:ro"
       - "../jing-saas/:/var/www/html"
       - "../piwik/:/var/www/piwik"
       - "../freecart/:/var/www/freecart"
       - "../jingweb/:/var/www/jingweb"
+    environment:
+      - SERVER_NAME
 
   nodejs:
     build: node
@@ -79,7 +81,7 @@ services:
     links:
       - mysql
       - redis
-      - nginx
+      - openresty
     ports:
       - "${NODEJS_SHOP_PORT}:8081"
       - "${NODEJS_CLIENT_PORT}:8080"

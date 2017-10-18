@@ -1,4 +1,5 @@
 *.log
 mysql/data
 mongo/data
+nginx/logs/nginx.pid
 .env
