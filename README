@@ -1,8 +1,7 @@
 #jingdocker
 启动:
-     1.将根目录.env.example更名为.env
-     2.执行docker-compoese xxx.yml up/docker-compoese -f xxx.yml -f xxx1.yml up
+     进入docker项目根目录，执行docker-compoese -f docker-compose.piwik.yml up
 配置:
     SCRIPT为jingweb前端启动项
-     1.SCRIPT=dev 通过nodejs暴露端口，访问端口NODEJS_CLIENT_PORT=8080
-     2.SCRIPT=test 通过nginx暴露端口，访问端口NGINX_JINGWEB_HOST_HTTP_PORT=4080
+     1.SCRIPT=dev 通过nodejs暴露端口，访问.env端口$NODEJS_CLIENT_PORT
+     2.SCRIPT=test 通过nginx暴露端口，访问.env端口$NGINX_JINGWEB_HOST_HTTP_PORT
