@@ -50,7 +50,7 @@ services:
       - "../jingweb/:/var/www/jingweb"
 
   openresty:
-    image: openresty/openresty
+    image: openresty/openresty:xenial
     links:
       - php-fpm
     depends_on:
