@@ -69,7 +69,7 @@ services:
     links:
       - mysql
       - redis
-      - nginx
+      - openresty
     ports:
       - "${NODEJS_SHOP_PORT}:8081"
     volumes:
