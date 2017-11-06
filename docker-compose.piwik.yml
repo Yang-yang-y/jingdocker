@@ -12,16 +12,16 @@ services:
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - TZ=${WORKSPACE_TIMEZONE}
-    ports:
-      - "${MYSQL_PORT}:3306"
+#    ports:
+#      - "${MYSQL_PORT}:3306"
     volumes:
       - "./mysql/data:/var/lib/mysql"
   mongo:
     image: mongo:3.4.2
     command:
       - mongod
-    ports:
-      - "${MONGO_PORT}:27017"
+#    ports:
+#      - "${MONGO_PORT}:27017"
     volumes:
       - "./mongo/data:/data/db"
   redis:
@@ -29,7 +29,7 @@ services:
     ports:
       - "${REDIS_PORT}:6379"
   php-fpm:
-#    build: php
+    #build: php
     #image: larryz/php-fpm-composer:1.2
     image: registry.cn-hangzhou.aliyuncs.com/homehub/jingdocker:1.7
     links:
@@ -44,11 +44,7 @@ services:
       - "SYS_PTRACE"
     volumes:
       - "../jing-saas/:/var/www/html"
-      - "../piwik/:/var/www/piwik"
-      - "../freecart/:/var/www/freecart"
       - "../jing-scrapy/:/root/jing-scrapy"
-      - "../jingweb/:/var/www/jingweb"
-
   openresty:
     image: openresty/openresty:xenial
     links:
@@ -58,34 +54,24 @@ services:
       - php-fpm
     ports:
       - "${NGINX_DEFAULT_HOST_HTTP_PORT}:80"
-      - "${NGINX_PWIKI_HOST_HTTP_PORT}:1080"
-      - "${NGINX_FREECART_HOST_HTTP_PORT}:2080"
-      - "${NGINX_JINGWEB_HOST_HTTP_PORT}:4080"
-      - "${NGINX_JINGHOME_HOST_HTTP_PORT}:5080"
-
     volumes:
       - "./nginx/logs:/usr/local/openresty/nginx/logs"
       - "./nginx/sites-available:/etc/nginx/sites-available"
       - "./nginx/conf.d:/etc/nginx/conf.d"
       - "./nginx/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf:ro"
       - "../jing-saas/:/var/www/html"
-      - "../piwik/:/var/www/piwik"
-      - "../freecart/:/var/www/freecart"
       - "../jingweb/:/var/www/jingweb"
     environment:
       - SERVER_NAME
-
   nodejs:
     build: node
     #image: node:alpine
     links:
       - mysql
       - redis
-      - openresty
+      - nginx
     ports:
       - "${NODEJS_SHOP_PORT}:8081"
-      - "${NODEJS_CLIENT_PORT}:8080"
-
     volumes:
       - "../jingweb:/usr/src/app"
     env_file:
