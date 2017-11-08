@@ -29,8 +29,6 @@
         http://localhost:6080 
         http://localhost:6080
         ```
-    
-
 **生产环境**    分支master
 
 - 修改.env 
@@ -41,7 +39,7 @@
 - 启动容器 
     * 进入项目jingdocker根目录
         ```bash
-         cd jingdocker
+         cd yourworkspace/jingdocker
         ```
     * 启动 
         ```bash
