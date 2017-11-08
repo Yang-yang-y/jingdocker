@@ -26,11 +26,10 @@ services:
       - "./mongo/data:/data/db"
   redis:
     image: redis:alpine
-    ports:
-      - "${REDIS_PORT}:6379"
+#    ports:
+#      - "${REDIS_PORT}:6379"
   php-fpm:
     #build: php
-    #image: larryz/php-fpm-composer:1.2
     image: registry.cn-hangzhou.aliyuncs.com/homehub/jingdocker:1.7
     links:
       - mysql
@@ -65,7 +64,6 @@ services:
       - SERVER_NAME
   nodejs:
     build: node
-    #image: node:alpine
     links:
       - mysql
       - redis
