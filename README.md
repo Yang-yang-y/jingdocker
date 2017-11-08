@@ -3,9 +3,20 @@
 **本地环境**   分支develop
 
 
-- 修改.env 的SCRIPT=dev
+- 修改.env 
+    ```bash
+    SCRIPT=dev
+    ```
+    
 - 进入项目jingdocker根目录
-- 启动 docker-compose up
+    ```bash
+    cd yourworkspace/jingdocker
+    ```
+    
+- 启动 
+    ```bash
+    docker-compose up
+    ```
 
 - 访问地址：
 
@@ -40,7 +51,7 @@
 - 启动容器 
     * 进入项目jingdocker根目录
         ```bash
-         cd yourworkspace/jingdocker
+        cd yourworkspace/jingdocker
         ```
     * 启动 
         ```bash
