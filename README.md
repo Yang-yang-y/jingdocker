@@ -9,7 +9,7 @@
     访问地址：
     freecart项目  localhost:2080/admin   /127.0.0.1:2080/admin
     jingsaas后台 localhost:40080  /0.0.0.0:40080
-    jingweb项目(loadjs启动)  localhost:8080 /127.0.0.1:8080
+    jingweb项目(loadjs启动)  localhost:8080 /127.0.0.1:8088
     jingweb项目（打包启动）localhost:6080 /localhost:6080
     
 
