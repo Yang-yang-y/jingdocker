@@ -31,7 +31,7 @@ services:
   php-fpm:
 #    build: php
     #image: larryz/php-fpm-composer:1.2
-    image: registry.cn-hangzhou.aliyuncs.com/homehub/jingdocker:1.8
+    image: registry.cn-hangzhou.aliyuncs.com/homehub/jingdocker:1.8.1
     links:
       - mysql
       - redis
