@@ -9,7 +9,10 @@ RUN apk --no-cache add curl git  openssh openssl  tini bash vim  freetype libpng
 # RUN php -r "unlink('composer-setup.php');"
 # RUN mv composer.phar /usr/local/bin/composer
 COPY composer /usr/local/bin/composer
+
 RUN apk --no-cache add 	libxml2-dev autoconf g++ make  openssl-dev automake  libtool
+
+
 RUN docker-php-source extract
 RUN pecl update-channels
 RUN pecl install redis && \
@@ -36,17 +39,27 @@ RUN docker-php-ext-enable mongodb
 RUN pecl install xdebug
 RUN docker-php-ext-install zip
 
+
 ADD ./laravel.ini /usr/local/etc/php/conf.d
 ADD ./laravel.pool.conf /usr/local/etc/php-fpm.d/
+
 #RUN rm -r /var/lib/apt/lists/*
+
 #RUN usermod -u 1000 www-data
 COPY ./opcache.ini /usr/local/etc/php/conf.d/opcache.ini
 #COPY ./xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+
 #EXPOSE 22
 COPY ./docker-php-entrypoint.sh /usr/local/bin/docker-php-entrypoint
 RUN chmod 0777 /usr/local/bin/docker-php-entrypoint
+
 #COPY docker-entrypoint.sh /docker-entrypoint.sh
+
 RUN composer config -g repo.packagist composer https://packagist.phpcomposer.com
+
+
+
+
 #for python
 #RUN apk --no-cache add python3 python3-dev py-pip build-base
 #for scrapy
