@@ -30,7 +30,7 @@ services:
 #      - "${REDIS_PORT}:6379"
   php-fpm:
     #build: php
-    image: registry.cn-hangzhou.aliyuncs.com/homehub/jingdocker:1.7
+    image: registry.cn-hangzhou.aliyuncs.com/homehub/jingdocker:1.8
     links:
       - mysql
       - redis
@@ -59,6 +59,8 @@ services:
       - "./nginx/conf.d:/etc/nginx/conf.d"
       - "./nginx/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf:ro"
       - "../jing-saas/:/var/www/html"
+      - "../piwik/:/var/www/piwik"
+      - "../freecart/:/var/www/freecart"
       - "../jingweb/:/var/www/jingweb"
     environment:
       - SERVER_NAME

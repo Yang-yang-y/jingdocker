@@ -9,6 +9,9 @@ fi
 
 nohup php artisan queue:work 1>storage/logs/queue.log 2>&1 &
 
+echo '*       *       *       *       *       php /var/www/html/artisan schedule:run >> /root/schedule.log 2>&1' >> /var/spool/cron/crontabs/root 2>&1
+crond
+
 # first arg is `-f` or `--some-option`
 if [ "${1#-}" != "$1" ]; then
 	set -- php-fpm "$@"
