@@ -70,8 +70,8 @@ services:
       - mysql
       - redis
       - openresty
-    ports:
-      - "${NODEJS_SHOP_PORT}:8081"
+#    ports:
+#      - "${NODEJS_SHOP_PORT}:8081"
     volumes:
       - "../jingweb:/usr/src/app"
     env_file:
