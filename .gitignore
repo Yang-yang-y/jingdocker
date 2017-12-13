@@ -2,5 +2,5 @@
 mysql/data
 mongo/data
 nginx/logs/nginx.pid
-promothus/promothus/data
-promothus/grafana
+prometheus/prometheus/data
+prometheus/grafana
