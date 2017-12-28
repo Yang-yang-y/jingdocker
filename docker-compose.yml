@@ -87,6 +87,6 @@ services:
       - "${NODEJS_CLIENT_PORT}:8080"
 
     volumes:
-      - "../jingweb:/usr/src/app"
+      - "../jingweb:/usr/src/app:cached"
     env_file:
       - ./node/jingweb.env
