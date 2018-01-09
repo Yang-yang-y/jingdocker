@@ -72,6 +72,7 @@ services:
       - "../piwik/:/var/www/piwik"
       - "../freecart/:/var/www/freecart"
       - "../jingweb/:/var/www/jingweb"
+      - "../xingstation_activity/:/var/www/xingstation_activity"
     environment:
       - SERVER_NAME
 
@@ -90,3 +91,10 @@ services:
       - "../jingweb:/usr/src/app:cached"
     env_file:
       - ./node/jingweb.env
+
+  nodejs-activity:
+    build: node-activity
+    volumes:
+      - "../xingstation_activity:/usr/src/app"
+    env_file:
+      - ./node-activity/xingstation_activity.env
