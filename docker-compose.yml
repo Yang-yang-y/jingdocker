@@ -43,7 +43,7 @@ services:
     cap_add:
       - "SYS_PTRACE"
     volumes:
-      - "../jing-saas/:/var/www/html:cached"
+      - "../jing-saas/:/var/www/html"
       - "../piwik/:/var/www/piwik"
       - "../freecart/:/var/www/freecart"
       - "../jing-scrapy/:/root/jing-scrapy"
@@ -64,7 +64,7 @@ services:
       - "${NGINX_JINGHOME_HOST_HTTP_PORT}:5080"
 
     volumes:
-      - "./nginx/logs:/usr/local/openresty/nginx/logs:cached"
+      - "./nginx/logs:/usr/local/openresty/nginx/logs"
       - "./nginx/sites-available:/etc/nginx/sites-available"
       - "./nginx/conf.d:/etc/nginx/conf.d"
       - "./nginx/nginx.conf:/usr/local/openresty/nginx/conf/nginx.conf:ro"
@@ -88,7 +88,7 @@ services:
       - "${NODEJS_CLIENT_PORT}:8080"
 
     volumes:
-      - "../jingweb:/usr/src/app:cached"
+      - "../jingweb:/usr/src/app"
     env_file:
       - ./node/jingweb.env
 
