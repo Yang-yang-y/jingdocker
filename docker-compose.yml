@@ -15,7 +15,7 @@ services:
     ports:
       - "${MYSQL_PORT}:3306"
     volumes:
-      - "./mysql/data:/var/lib/mysql:cached"
+      - "./mysql/data:/var/lib/mysql"
   mongo:
     image: mongo:3.4.2
     command:
