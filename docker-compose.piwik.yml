@@ -12,8 +12,8 @@ services:
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - TZ=${WORKSPACE_TIMEZONE}
-#    ports:
-#      - "${MYSQL_PORT}:3306"
+    ports:
+      - "${MYSQL_PORT}:3306"
     volumes:
       - "./mysql/data:/var/lib/mysql"
   mongo:
