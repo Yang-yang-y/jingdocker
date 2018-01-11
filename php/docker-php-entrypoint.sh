@@ -7,10 +7,10 @@ if [ ! -d "/var/www/html/vendor" ]; then
   composer install
 fi
 
-nohup php artisan queue:work 1>storage/logs/queue.log 2>&1 &
+su - www-data -c nohup -c "php artisan queue:work --tries=3" 1>>/var/www/html/storage/queue.log 2>&1 &
 
-echo '*       *       *       *       *       php /var/www/html/artisan schedule:run >> /dev/null 2>&1' >> /var/spool/cron/crontabs/root 2>&1
-crond
+#echo '*       *       *       *       *       php /var/www/html/artisan schedule:run >> /dev/null 2>&1' >> /var/spool/cron/crontabs/root 2>&1
+#crond
 
 # first arg is `-f` or `--some-option`
 if [ "${1#-}" != "$1" ]; then
