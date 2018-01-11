@@ -30,7 +30,7 @@ services:
 #      - "${REDIS_PORT}:6379"
   php-fpm:
     #build: php
-    image: registry.cn-hangzhou.aliyuncs.com/homehub/jingdocker:1.8.1
+    image: registry.cn-hangzhou.aliyuncs.com/homehub/jingdocker:1.8.2
     links:
       - mysql
       - redis
