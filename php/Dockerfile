@@ -58,7 +58,8 @@ RUN chmod 0777 /usr/local/bin/docker-php-entrypoint
 RUN composer config -g repo.packagist composer https://packagist.phpcomposer.com
 
 
-
+echo '*       *       *       *       *       php /var/www/html/artisan schedule:run >> /dev/null 2>&1' >> /var/spool/cron/crontabs/root 2>&1
+crond
 
 #for python
 #RUN apk --no-cache add python3 python3-dev py-pip build-base
