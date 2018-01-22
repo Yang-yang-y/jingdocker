@@ -16,6 +16,7 @@ services:
       - "${MYSQL_PORT}:3306"
     volumes:
       - "./mysql/data:/var/lib/mysql"
+      - "./mysql/conf:/etc/mysql/conf.d"
   mongo:
     image: mongo:3.4.2
     command:
@@ -43,7 +44,10 @@ services:
       - "SYS_PTRACE"
     volumes:
       - "../jing-saas/:/var/www/html"
+      - "../piwik/:/var/www/piwik"
+      - "../freecart/:/var/www/freecart"
       - "../jing-scrapy/:/root/jing-scrapy"
+      - "../jingweb/:/var/www/jingweb"
   openresty:
     image: openresty/openresty:xenial
     links:
