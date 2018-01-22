@@ -2,7 +2,7 @@ FROM php:7.1-fpm-alpine
 MAINTAINER Larryzhang <zhangyang@jingfree.com>
 # modify the repo to aliyun
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/' /etc/apk/repositories
-RUN apk --no-cache add curl git  openssh openssl  tini bash vim  freetype libpng libjpeg-turbo freetype-dev libpng-dev libjpeg-turbo-dev  libmcrypt-dev
+RUN apk --no-cache add curl git  openssh openssl  tini bash vim  freetype libpng libjpeg-turbo freetype-dev libpng-dev libjpeg-turbo-dev  libmcrypt-dev supervisor
 #
 # COPY composer-installer.php composer-setup.php
 # RUN php composer-setup.php
@@ -57,9 +57,11 @@ RUN chmod 0777 /usr/local/bin/docker-php-entrypoint
 
 RUN composer config -g repo.packagist composer https://packagist.phpcomposer.com
 
+COPY ./supervisor/laravel-worker-common.conf /etc/supervisor/conf.d/
+COPY ./supervisor/laravel-worker-face.conf /etc/supervisor/conf.d/
 
-echo '*       *       *       *       *       php /var/www/html/artisan schedule:run >> /dev/null 2>&1' >> /var/spool/cron/crontabs/root 2>&1
-crond
+RUN echo '*       *       *       *       *       php /var/www/html/artisan schedule:run >> /dev/null 2>&1' >> /var/spool/cron/crontabs/root 2>&1
+RUN crond
 
 #for python
 #RUN apk --no-cache add python3 python3-dev py-pip build-base
