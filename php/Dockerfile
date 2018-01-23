@@ -16,6 +16,7 @@ RUN apk --no-cache add 	libxml2-dev autoconf g++ make  openssl-dev automake  lib
 RUN docker-php-source extract
 RUN pecl update-channels
 RUN pecl install redis && \
+  docker-php-ext-install pcntl && \
   docker-php-ext-enable redis && \
   docker-php-ext-install mysqli && \
   docker-php-ext-install pdo && \
@@ -57,8 +58,7 @@ RUN chmod 0777 /usr/local/bin/docker-php-entrypoint
 
 RUN composer config -g repo.packagist composer https://packagist.phpcomposer.com
 
-COPY ./supervisor/laravel-worker-common.conf /etc/supervisor/conf.d/
-COPY ./supervisor/laravel-worker-face.conf /etc/supervisor/conf.d/
+COPY ./supervisor/*.conf /etc/supervisor/conf.d/
 
 RUN echo '*       *       *       *       *       php /var/www/html/artisan schedule:run >> /dev/null 2>&1' >> /var/spool/cron/crontabs/root 2>&1
 RUN crond
