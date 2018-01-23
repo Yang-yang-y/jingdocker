@@ -32,7 +32,7 @@ services:
   php-fpm:
 #    build: php
     #image: larryz/php-fpm-composer:1.2
-    image: registry.cn-hangzhou.aliyuncs.com/homehub/jingdocker:1.8.3
+    image: registry.cn-hangzhou.aliyuncs.com/homehub/jingdocker:1.8.5
     links:
       - mysql
       - redis
@@ -44,6 +44,8 @@ services:
     cap_add:
       - "SYS_PTRACE"
     volumes:
+      - "./php/supervisord.conf:/etc/supervisord.conf"
+      - "./php/supervisor/:/etc/supervisor.d"
       - "../jing-saas/:/var/www/html"
       - "../piwik/:/var/www/piwik"
       - "../freecart/:/var/www/freecart"
