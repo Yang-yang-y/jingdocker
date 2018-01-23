@@ -58,8 +58,6 @@ RUN chmod 0777 /usr/local/bin/docker-php-entrypoint
 
 RUN composer config -g repo.packagist composer https://packagist.phpcomposer.com
 
-COPY ./supervisor/*.conf /etc/supervisor/conf.d/
-
 RUN echo '*       *       *       *       *       php /var/www/html/artisan schedule:run >> /dev/null 2>&1' >> /var/spool/cron/crontabs/root 2>&1
 RUN crond
 
