@@ -2,4 +2,4 @@
 set -e
 
 cd /usr/src/app/
-sh build.sh $SCRIPT_ACTIVITY
+sh build.sh $SCRIPT
