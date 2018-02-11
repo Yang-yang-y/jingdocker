@@ -1,0 +1,7 @@
+version: '3'
+  nodejs-activity:
+    build: node-activity
+    volumes:
+      - "../xingstation_activity:/usr/src/app"
+    env_file:
+      - ./node-activity/xingstation_activity.env
