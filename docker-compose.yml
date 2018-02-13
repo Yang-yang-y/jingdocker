@@ -30,8 +30,6 @@ services:
     ports:
       - "46379:6379"
   php-fpm:
-#    build: php
-    #image: larryz/php-fpm-composer:1.2
     image: registry.cn-hangzhou.aliyuncs.com/homehub/jingdocker:1.8.6
     links:
       - mysql
@@ -45,7 +43,6 @@ services:
       - "../jing-saas/:/var/www/html"
       - "../piwik/:/var/www/piwik"
       - "../freecart/:/var/www/freecart"
-      - "../jing-scrapy/:/root/jing-scrapy"
       - "../jingweb/:/var/www/jingweb"
   openresty:
     image: openresty/openresty:xenial
@@ -67,17 +64,15 @@ services:
     environment:
       - SERVER_NAME
 
-  nodejs:
+  node-build:
+    ## only to build 
+    ## build a image
     build: node
-    links:
-      - mysql
-      - redis
-      - openresty
-    ports:
-      - 3100:3100
-      - 3300:3300
     volumes:
-      - "../jingweb:/usr/src/app"
+      - "../jing-saas/jingcms:/usr/src/app"
       - "../xingstation_activity/:/usr/src/xingstation_activity"
-    env_file:
-      - ./node/jingweb.env
+    command:
+      - sh 
+      - -c 
+      - "npm install && npm run build"
+

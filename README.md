@@ -1,59 +1,38 @@
 # jingdocker
 
-**本地环境**   分支develop
+**本地环境**   
 
+- 安装 switchhosts
 
-- 修改.env 
-    ```bash
-    SCRIPT=dev
-    ```
+    下载地址  https://github.com/oldj/SwitchHosts/releases
+
+    导入 switchhosts.json 
     
-- 进入项目jingdocker根目录
-    ```bash
-    cd yourworkspace/jingdocker
-    ```
+    切换到 dev 
+
     
 - 启动 
     ```bash
-    docker-compose up
+    docker-compose up -d
     ```
 
 - 访问地址：
 
     * freecart项目  
-        ```
-        http://localhost:2080/admin
-        http://127.0.0.1:2080/admin
-         ```  
-    * jingsaas后台 
-        ```
-        http://localhost:40080 
-        http://0.0.0.0:40080
-        ```
-    * jingweb项目(loadjs启动)
-        ```
-        http://localhost:8088
-        http://127.0.0.1:8088
-        ```
-    * jingweb项目（打包启动）
-        ```
-        http://localhost:6080 
-        http://localhost:6080
-        ```
-        
-**生产环境**    分支master
 
-- 修改.env 
-    ```
-    SERVER_NAME=jingfree.com
-    SCRIPT=production
-    ```
-- 启动容器 
-    * 进入项目jingdocker根目录
-        ```bash
-        cd yourworkspace/jingdocker
-        ```
-    * 启动 
-        ```bash
-        docker-compose -f docker-compose.piwik.yml up
-        ```
+        http://store.jingfree.top/admin
+
+    * jingsaas后台 
+
+        api: http://sapi.jingfree.top
+
+        shop:  http://shop.jingfree.top
+
+        shopdev: http://shop.jingfree.top (need run docker-compose up -d docker-compose.cmsdev.yml)
+        
+    * xingstation
+
+        http://h5.jingfree.top
+        
+        
+
