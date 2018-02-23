@@ -28,7 +28,7 @@
 
         shop:  http://shop.jingfree.top
 
-        shopdev: http://shop.jingfree.top (need run docker-compose up -d docker-compose.cmsdev.yml)
+        shopdev: http://devshop.jingfree.top (need run docker-compose  -f docker-compose.cmsdev.yml up -d )
         
     * xingstation
 
