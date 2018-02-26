@@ -52,7 +52,8 @@ services:
       - redis
       - php-fpm
     ports:
-      - 80:80
+      - "80:80"
+      - "443:443"
     volumes:
       - "./nginx/logs:/usr/local/openresty/nginx/logs"
       - "./nginx/conf:/usr/local/openresty/nginx/conf"
