@@ -1,0 +1,9 @@
+version: '3'
+services:
+  
+  openresty:
+    volumes:
+      - "./nginx/cert/xingstation:/usr/local/openresty/nginx/cert/"
+
+
+
