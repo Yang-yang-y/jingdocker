@@ -2,7 +2,7 @@
     "list": [{
         "id": "1517382997416-491321",
         "title": "dev",
-        "content": "# My hosts\n\n127.0.0.1\tlocalhost jingfree.top sapi.jingfree.top store.jingfree.top  devshop.jingfree.top  h5.jingfree.top shop.jingfree.top\n\n255.255.255.255\tbroadcasthost\n::1             localhost \n",
+        "content": "# My hosts\n\n127.0.0.1\tlocalhost jingfree.top sapi.jingfree.top store.jingfree.top  devshop.jingfree.top  h5.jingfree.top devh5.jingfree.top shop.jingfree.top\n\n255.255.255.255\tbroadcasthost\n::1             localhost \n",
         "on": true
     }, {
         "id": "1517382997416-975835",

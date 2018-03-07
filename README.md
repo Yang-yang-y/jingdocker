@@ -26,13 +26,16 @@
 
         api: http://sapi.jingfree.top
 
-        shop:  http://shop.jingfree.top
+        打包访问 shop:  http://shop.jingfree.top
 
-        shopdev: http://devshop.jingfree.top (need run docker-compose  -f docker-compose.cmsdev.yml up -d )
+        node访问 devshop: http://devshop.jingfree.top (输入命令docker-compose  -f docker-compose.cmsdev.yml up -d )
         
     * xingstation
 
-        http://h5.jingfree.top
+        打包访问 h5： http://h5.jingfree.top
+        
+        node访问 devh5: http://devh5.jingfree.top (输入命令 docker-compose  -f docker-compose.h5dev.yml up -d )
+        
         
         
 

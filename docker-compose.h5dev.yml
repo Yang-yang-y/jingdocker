@@ -1,14 +1,13 @@
 version: '3'
 services:
-  node-cms-dev:
+  node-h5-dev:
     image: registry.cn-hangzhou.aliyuncs.com/homehub/jingnode:1.0.0
     ports:
-      - "8080:8080"
+      - "8087:8087"
     volumes:
-      - "../jing-saas/jingcms:/usr/src/app"
+      - "../xingstation_activity:/usr/src/app"
     command:
       # - top
       - sh
       - -c
       - "npm install && npm run dev"
-
