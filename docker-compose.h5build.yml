@@ -1,0 +1,11 @@
+version: '3'
+services:
+  node-h5-build:
+    image: registry.cn-hangzhou.aliyuncs.com/homehub/jingnode:1.0.0
+    volumes:
+      - "../xingstation_activity:/usr/src/app"
+    command:
+      # - top
+      - sh
+      - -c
+      - "npm install && npm run production"
