@@ -37,13 +37,13 @@
         node访问 devh5: http://devh5.jingfree.top (输入命令 docker-compose  -f docker-compose.h5dev.yml up -d )
         
         
--  docker命令：
+**docker命令**
     
-    cd 到 jingdocker目录
+ - cd 到 jingdocker目录
     
-    * 常用命令
+ -   常用命令
           
-         ```
+         
                  docker-compose up -d     生成并后台启动容器组
                  
                  docker-compose -f xxx.yml up -d   指定配置文件 生成并后台启动容器组
@@ -63,11 +63,10 @@
                  docker-compose -f xxx.yml down  指定配置文件 销毁容器
                  
 
-                 
-         ```
-    * 建议
+         
+ - 建议
     
-        ```
+        
             如遇容器工作不正常，可先docker restart （容器id）重启容器解决问题，
             不生效的话，先执行 docker-compose down 再docker-compose up -d（down 会清除所有数据，生产环境慎用）
-        ```
+        
