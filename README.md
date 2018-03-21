@@ -39,8 +39,6 @@
         
 **docker命令**
     
- - cd 到 jingdocker目录
-    
  -   常用命令
           
          
@@ -67,6 +65,14 @@
  - 建议
     
         
-            如遇容器工作不正常，可先docker restart （容器id）重启容器解决问题，
-            不生效的话，先执行 docker-compose down 再docker-compose up -d（down 会清除所有数据，生产环境慎用）
+            本地环境调试
+            确保switchhost软件已经运行
+            1.进入jingdocker项目  
+            2.执行docker-compose down  
+            3.执行docker-compose -f docker-compose.cmsdev.yml down
+            4.执行docker-compose -f docker-compose.h5dev.yml down
+            5.执行docker-compsoe up 
+            6.进入 xingstation_activity 目录 ，npm run dev 访问域名为 http://devh5.jingfree.top 
+            7.进入 jingcms目录 ，npm run dev ，访问域名为 http://devshop.jingfree.top 
+            8.如果还是不生效，关掉docker软件再重新打开，重复步骤 1，2，5
         
