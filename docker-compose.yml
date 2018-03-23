@@ -43,6 +43,7 @@ services:
       - "../jing-saas/:/var/www/html"
       - "../piwik/:/var/www/piwik"
       - "../freecart/:/var/www/freecart"
+      - "../xingstation-api/:/var/www/xingstation-api"
       - "../jingweb/:/var/www/jingweb"
   openresty:
     image: openresty/openresty:xenial
@@ -63,6 +64,7 @@ services:
       - "../freecart/:/var/www/freecart"
       - "../jingweb/:/var/www/jingweb"
       - "../xingstation_activity/:/var/www/xingstation_activity"
+      - "../xingstation-api/:/var/www/xingstation-api"
     environment:
       - SERVER_NAME
 
