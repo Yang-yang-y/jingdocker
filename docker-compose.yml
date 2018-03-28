@@ -17,6 +17,7 @@ services:
     volumes:
       - "./mysql/data:/var/lib/mysql"
       - "./mysql/conf:/etc/mysql/conf.d"
+      - "./mysql/init:/docker-entrypoint-initdb.d"
   mongo:
     image: mongo:3.4.2
     command:
@@ -40,6 +41,7 @@ services:
     cap_add:
       - "SYS_PTRACE"
     volumes:
+      - "./php/supervisor/:/etc/supervisor.d"
       - "../jing-saas/:/var/www/html"
       - "../piwik/:/var/www/piwik"
       - "../freecart/:/var/www/freecart"
