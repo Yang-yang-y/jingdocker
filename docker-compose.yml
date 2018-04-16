@@ -45,8 +45,18 @@ services:
       - "../jing-saas/:/var/www/html"
       - "../piwik/:/var/www/piwik"
       - "../freecart/:/var/www/freecart"
-      - "../xingstation-api/:/var/www/xingstation-api"
       - "../jingweb/:/var/www/jingweb"
+  php-fpm-api:
+    image: registry.cn-hangzhou.aliyuncs.com/homehub/php-api
+    links:
+      - mysql
+      - redis
+      - mongo
+    cap_add:
+      - "SYS_PTRACE"
+    volumes:
+      - "./php-api/supervisor:/etc/supervisor.d"
+      - "../xingstation-api/:/var/www/xingstation-api"
   openresty:
     image: openresty/openresty:xenial
     links:

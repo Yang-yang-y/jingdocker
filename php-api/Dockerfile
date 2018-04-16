@@ -41,6 +41,8 @@ RUN chmod 0777 /usr/local/bin/docker-php-entrypoint
 
 #COPY docker-entrypoint.sh /docker-entrypoint.sh
 
-RUN echo '*       *       *       *       *       php /var/www/html/artisan schedule:run >> /dev/null 2>&1' >> /var/spool/cron/crontabs/root 2>&1
+RUN echo '*       *       *       *       *       php /var/www/xingstation-api/artisan schedule:run >> /dev/null 2>&1' >> /var/spool/cron/crontabs/root 2>&1
 RUN crond
+
+WORKDIR /var/www/xingstation-api
 
