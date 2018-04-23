@@ -2,8 +2,8 @@
 set -e
 
 # run composer install
-if [ ! -d "/var/www/xingstation-api/vendor" ]; then
-  cd /var/www/xingstation-api
+if [ ! -d "/var/www/xingstation-publication/vendor" ]; then
+  cd /var/www/xingstation-publication
   composer install
 fi
 
