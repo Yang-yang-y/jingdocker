@@ -47,6 +47,17 @@ services:
       - "../freecart/:/var/www/freecart"
       - "../xingstation-api/:/var/www/xingstation-api"
       - "../jingweb/:/var/www/jingweb"
+  php-publication:
+    image: registry.cn-hangzhou.aliyuncs.com/homehub/php-publication
+    links:
+      - mysql
+      - redis
+      - mongo
+    cap_add:
+      - "SYS_PTRACE"
+    volumes:
+      - "./php-publication/supervisor:/etc/supervisor.d"
+      - "../xingstation-publication/:/var/www/xingstation-publication"
   openresty:
     image: openresty/openresty:xenial
     links:
@@ -67,6 +78,7 @@ services:
       - "../jingweb/:/var/www/jingweb"
       - "../xingstation_activity/:/var/www/xingstation_activity"
       - "../xingstation-api/:/var/www/xingstation-api"
+      - "../xingstation-publication/:/var/www/xingstation-publication"
     environment:
       - SERVER_NAME
 
