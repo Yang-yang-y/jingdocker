@@ -82,16 +82,4 @@ services:
     environment:
       - SERVER_NAME
 
-  node-build:
-    ## only to build 
-    ## build a image
-    image: registry.cn-hangzhou.aliyuncs.com/homehub/jingnode:1.0.0
-#    build: node
-    volumes:
-      - "../jing-saas/jingcms:/usr/src/app"
-      - "../xingstation_activity/:/usr/src/xingstation_activity"
-    command:
-      - sh 
-      - -c 
-      - "npm install && npm run release"
 
