@@ -3,7 +3,7 @@ set -e
 
 # run composer install
 if [ ! -d "/var/www/xingstation-shop/vendor" ]; then
-  cd /var/www/xingstation-publication
+  cd /var/www/html
   composer install
 fi
 
