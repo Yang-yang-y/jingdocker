@@ -58,16 +58,6 @@ services:
     volumes:
       - "./php-publication/supervisor:/etc/supervisor.d"
       - "../xingstation-publication/:/var/www/xingstation-publication"
-  php-shop:
-    build: ./php-shop
-    links:
-      - mysql
-      - redis
-    cap_add:
-      - "SYS_PTRACE"
-    volumes:
-      - "./php-shop/supervisor:/etc/supervisor.d"
-      - "../xingstation-shop/:/var/www/html"
   openresty:
     image: openresty/openresty:xenial
     links:
