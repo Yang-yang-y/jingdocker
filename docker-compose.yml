@@ -79,7 +79,7 @@ services:
       - php-publication
       - php-api
     ports:
-      - "10.47.99.65:80:80"
+      - "80:80"
       - "443:443"
     volumes:
       - "./nginx/logs:/usr/local/openresty/nginx/logs"
