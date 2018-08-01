@@ -1,9 +1,0 @@
-[program:face]
-process_name=%(program_name)s_%(process_num)02d
-command=php /var/www/html/artisan queue:work --queue=face --tries=3
-autostart=true
-autorestart=true
-numprocs=5
-user=www-data
-redirect_stderr=true
-stdout_logfile=/var/www/html/storage/queue.log

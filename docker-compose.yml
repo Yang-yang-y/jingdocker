@@ -41,14 +41,13 @@ services:
     cap_add:
       - "SYS_PTRACE"
     volumes:
-      - "./php/supervisor/:/etc/supervisor.d"
+      - "../jing-saas/supervisor/:/etc/supervisor.d"
       - "../jing-saas/:/var/www/html"
       - "../piwik/:/var/www/piwik"
       - "../freecart/:/var/www/freecart"
-      - "../xingstation-api/:/var/www/xingstation-api"
       - "../jingweb/:/var/www/jingweb"
   php-publication:
-    image: registry.cn-hangzhou.aliyuncs.com/homehub/php-publication
+    image: registry.cn-hangzhou.aliyuncs.com/homehub/jingdocker:1.8.6
     links:
       - mysql
       - redis
@@ -56,17 +55,31 @@ services:
     cap_add:
       - "SYS_PTRACE"
     volumes:
-      - "./php-publication/supervisor:/etc/supervisor.d"
-      - "../xingstation-publication/:/var/www/xingstation-publication"
+      - "../xingstation-publication/supervisor:/etc/supervisor.d"
+      - "../xingstation-publication/:/var/www/html"
+  php-api:
+    image: registry.cn-hangzhou.aliyuncs.com/homehub/jingdocker:1.8.6
+    links:
+      - mysql
+      - redis
+    cap_add:
+      - "SYS_PTRACE"
+    volumes:
+      - "../xingstation-api/supervisor:/etc/supervisor.d"
+      - "../xingstation-api/:/var/www/html"
   openresty:
     image: openresty/openresty:xenial
     links:
       - php-fpm
+      - php-publication
+      - php-api
     depends_on:
       - redis
       - php-fpm
+      - php-publication
+      - php-api
     ports:
-      - "10.47.99.65:80:80"
+      - "80:80"
       - "443:443"
     volumes:
       - "./nginx/logs:/usr/local/openresty/nginx/logs"
@@ -79,7 +92,6 @@ services:
       - "../xingstation_activity/:/var/www/xingstation_activity"
       - "../xingstation-api/:/var/www/xingstation-api"
       - "../xingstation-publication/:/var/www/xingstation-publication"
-      - "../xingstation-shop/:/var/www/html"
       - "../xingstation-web/:/var/www/xingstation-web"
     environment:
       - SERVER_NAME
