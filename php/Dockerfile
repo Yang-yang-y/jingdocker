@@ -40,7 +40,7 @@ COPY ./docker-php-entrypoint.sh /usr/local/bin/docker-php-entrypoint
 RUN chmod 0777 /usr/local/bin/docker-php-entrypoint
 
 #COPY docker-entrypoint.sh /docker-entrypoint.sh
-
+RUN echo '101.95.12.138 http://github.com' >> /etc/hosts
 RUN echo '*       *       *       *       *       php /var/www/html/artisan schedule:run >> /dev/null 2>&1' >> /var/spool/cron/crontabs/root 2>&1
 RUN crond
 
