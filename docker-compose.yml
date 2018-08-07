@@ -31,7 +31,7 @@ services:
     ports:
       - "46379:6379"
   php-fpm:
-    image: registry.cn-hangzhou.aliyuncs.com/homehub/jingdocker:1.8.6
+    image: registry.cn-hangzhou.aliyuncs.com/image_home/jingdocker:1.8.6
     links:
       - mysql
       - redis
@@ -47,7 +47,7 @@ services:
       - "../freecart/:/var/www/freecart"
       - "../jingweb/:/var/www/jingweb"
   php-publication:
-    image: registry.cn-hangzhou.aliyuncs.com/homehub/jingdocker:1.8.6
+    image: registry.cn-hangzhou.aliyuncs.com/image_home/jingdocker:1.8.6
     links:
       - mysql
       - redis
@@ -58,7 +58,7 @@ services:
       - "../xingstation-publication/supervisor:/etc/supervisor.d"
       - "../xingstation-publication/:/var/www/html"
   php-api:
-    image: registry.cn-hangzhou.aliyuncs.com/homehub/jingdocker:1.8.6
+    image: registry.cn-hangzhou.aliyuncs.com/image_home/jingdocker:1.8.6
     links:
       - mysql
       - redis
@@ -67,6 +67,17 @@ services:
     volumes:
       - "../xingstation-api/supervisor:/etc/supervisor.d"
       - "../xingstation-api/:/var/www/html"
+  php-shop:
+    image: registry.cn-hangzhou.aliyuncs.com/image_home/jingdocker:1.8.6
+    links:
+      - mysql
+      - redis
+    extra_hosts:
+      - "github.com:101.95.12.138"
+    cap_add:
+      - "SYS_PTRACE"
+    volumes:
+      - "../xingstation-shop/:/var/www/html"
   openresty:
     image: openresty/openresty:xenial
     links:
@@ -93,6 +104,7 @@ services:
       - "../xingstation-api/:/var/www/xingstation-api"
       - "../xingstation-publication/:/var/www/xingstation-publication"
       - "../xingstation-web/:/var/www/xingstation-web"
+      - "../xingstation-shop/:/var/www/xingstation-shop"
     environment:
       - SERVER_NAME
 
