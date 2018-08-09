@@ -78,17 +78,30 @@ services:
       - "SYS_PTRACE"
     volumes:
       - "../xingstation-shop/:/var/www/html"
+  php-ebank:
+    image: registry.cn-hangzhou.aliyuncs.com/image_home/jingdocker:1.8.6
+    links:
+      - mysql
+      - redis
+    cap_add:
+      - "SYS_PTRACE"
+    volumes:
+      - "../ebank/:/var/www/html"
   openresty:
     image: openresty/openresty:xenial
     links:
       - php-fpm
       - php-publication
       - php-api
+      - php-ebank
+      - php-shop
     depends_on:
       - redis
       - php-fpm
       - php-publication
       - php-api
+      - php-ebank
+      - php-shop
     ports:
       - "80:80"
       - "443:443"
@@ -105,6 +118,7 @@ services:
       - "../xingstation-publication/:/var/www/xingstation-publication"
       - "../xingstation-web/:/var/www/xingstation-web"
       - "../xingstation-shop/:/var/www/xingstation-shop"
+      - "../ebank/:/var/www/ebank"
     environment:
       - SERVER_NAME
 
