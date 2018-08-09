@@ -67,17 +67,28 @@ services:
     volumes:
       - "../xingstation-api/supervisor:/etc/supervisor.d"
       - "../xingstation-api/:/var/www/html"
+  php-ebank:
+    image: registry.cn-hangzhou.aliyuncs.com/image_home/jingdocker:1.8.6
+    links:
+      - mysql
+      - redis
+    cap_add:
+      - "SYS_PTRACE"
+    volumes:
+      - "../ebank/:/var/www/html"
   openresty:
     image: openresty/openresty:xenial
     links:
       - php-fpm
       - php-publication
       - php-api
+      - php-ebank
     depends_on:
       - redis
       - php-fpm
       - php-publication
       - php-api
+      - php-ebank
     ports:
       - "10.47.99.65:80:80"
       - "443:443"
@@ -93,6 +104,7 @@ services:
       - "../xingstation-api/:/var/www/xingstation-api"
       - "../xingstation-publication/:/var/www/xingstation-publication"
       - "../xingstation-web/:/var/www/xingstation-web"
+      - "../ebank/:/var/www/ebank"
     environment:
       - SERVER_NAME
 
