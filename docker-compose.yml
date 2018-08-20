@@ -1,4 +1,11 @@
 version: '3'
+
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge
+
 services:
   mysql:
     image: mysql:5.6
@@ -18,6 +25,8 @@ services:
       - "./mysql/data:/var/lib/mysql"
       - "./mysql/conf:/etc/mysql/conf.d"
       - "./mysql/init:/docker-entrypoint-initdb.d"
+    networks:
+      - backend
   mongo:
     image: mongo:3.4.2
     command:
@@ -30,6 +39,8 @@ services:
     image: redis:alpine
     ports:
       - "46379:6379"
+    networks:
+      - backend
   php-fpm:
     image: registry.cn-hangzhou.aliyuncs.com/image_home/jingdocker:1.8.6
     links:
@@ -46,6 +57,8 @@ services:
       - "../piwik/:/var/www/piwik"
       - "../freecart/:/var/www/freecart"
       - "../jingweb/:/var/www/jingweb"
+    networks:
+      - backend
   php-publication:
     image: registry.cn-hangzhou.aliyuncs.com/image_home/jingdocker:1.8.6
     links:
@@ -57,6 +70,8 @@ services:
     volumes:
       - "../xingstation-publication/supervisor:/etc/supervisor.d"
       - "../xingstation-publication/:/var/www/html"
+    networks:
+      - backend
   php-api:
     image: registry.cn-hangzhou.aliyuncs.com/image_home/jingdocker:1.8.6
     links:
@@ -67,6 +82,8 @@ services:
     volumes:
       - "../xingstation-api/supervisor:/etc/supervisor.d"
       - "../xingstation-api/:/var/www/html"
+    networks:
+      - backend
   php-shop:
     image: registry.cn-hangzhou.aliyuncs.com/image_home/jingdocker:1.8.6
     links:
@@ -78,6 +95,8 @@ services:
       - "SYS_PTRACE"
     volumes:
       - "../xingstation-shop/:/var/www/html"
+    networks:
+      - backend
   php-ebank:
     image: registry.cn-hangzhou.aliyuncs.com/image_home/jingdocker:1.8.6
     links:
@@ -87,6 +106,8 @@ services:
       - "SYS_PTRACE"
     volumes:
       - "../ebank/:/var/www/html"
+    networks:
+      - backend
   openresty:
     image: openresty/openresty:xenial
     links:
@@ -121,5 +142,13 @@ services:
       - "../ebank/:/var/www/ebank"
     environment:
       - SERVER_NAME
+    networks:
+      frontend:
+        aliases:
+          - ebank.jingfree.top
+      backend:
+        aliases:
+          - ebank.jingfree.top
+
 
 
