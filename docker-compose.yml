@@ -106,6 +106,7 @@ services:
       - "SYS_PTRACE"
     volumes:
       - "../ebank/:/var/www/html"
+      - "../ebank/supervisor:/etc/supervisor.d"
     networks:
       - backend
   openresty:
