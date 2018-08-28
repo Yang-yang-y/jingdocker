@@ -85,8 +85,6 @@ services:
       - "SYS_PTRACE"
     volumes:
       - "../xingstation-shop/:/var/www/html"
-    networks:
-      - backend
   openresty:
     image: openresty/openresty:xenial
     links:
