@@ -1,0 +1,13 @@
+version: '3'
+services:
+  publication-build:
+    ## only to build
+    ## build a image
+    image: registry.cn-hangzhou.aliyuncs.com/homehub/node-publication
+#    build: node
+    volumes:
+      - "../xingstation-shop/xingstation_release:/usr/src/app"
+    command:
+      - sh
+      - -c
+      - "yarn && yarn run test"
