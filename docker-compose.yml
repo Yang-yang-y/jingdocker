@@ -103,7 +103,6 @@ services:
       - php-fpm
       - php-publication
       - php-api
-      - php-ebank
       - php-shop
     depends_on:
       - redis
