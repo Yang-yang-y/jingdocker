@@ -5,3 +5,4 @@ nginx/logs/nginx.pid
 prometheus/prometheus/data
 prometheus/grafana
 .env
+phpmyadmin

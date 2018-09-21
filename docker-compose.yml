@@ -97,6 +97,16 @@ services:
       - "../xingstation-shop/:/var/www/html"
     networks:
       - backend
+  phpmyadmin:
+      image: phpmyadmin/phpmyadmin
+      links:
+        - mysql:db
+      networks:
+        - backend
+      external_links:
+        - mysql:mysql
+      volumes:
+        - "./phpmyadmin/sessions:/sessions"
   openresty:
     image: openresty/openresty:xenial
     links:
@@ -104,6 +114,7 @@ services:
       - php-publication
       - php-api
       - php-shop
+      - phpmyadmin
     depends_on:
       - redis
       - php-fpm
@@ -125,8 +136,11 @@ services:
       - "../xingstation-publication/:/var/www/xingstation-publication"
       - "../xingstation-web/:/var/www/xingstation-web"
       - "../xingstation-shop/:/var/www/xingstation-shop"
+      - "../phpmyadmin/:/var/www/phpmyadmin"
     environment:
       - SERVER_NAME
+    external_links:
+      - phpmyadmin:phpmyadmin
     networks:
       frontend:
         aliases:
