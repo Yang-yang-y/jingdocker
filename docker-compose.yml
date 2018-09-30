@@ -130,8 +130,8 @@ services:
       - php-fpm
       - php-publication
       - php-api
-      - php-ebank
       - php-shop
+      - php-crm
     ports:
       - "80:80"
       - "443:443"
