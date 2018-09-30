@@ -19,8 +19,6 @@ services:
       - MYSQL_PASSWORD=passw0rd
       - MYSQL_ROOT_PASSWORD=passw0rd
       - TZ="Asia/Shanghai"
-    ports:
-      - "43306:3306"
     volumes:
       - "./mysql/data:/var/lib/mysql"
       - "./mysql/conf:/etc/mysql/conf.d"
@@ -97,26 +95,24 @@ services:
       - "../xingstation-shop/:/var/www/html"
     networks:
       - backend
-  php-ebank:
-    image: registry.cn-hangzhou.aliyuncs.com/image_home/jingdocker:1.8.6
-    links:
-      - mysql
-      - redis
-    cap_add:
-      - "SYS_PTRACE"
-    volumes:
-      - "../ebank/:/var/www/html"
-      - "../ebank/supervisor/:/etc/supervisor.d"
-    networks:
-      - backend
+  phpmyadmin:
+      image: phpmyadmin/phpmyadmin
+      links:
+        - mysql:db
+      networks:
+        - backend
+      external_links:
+        - mysql:mysql
+      volumes:
+        - "./phpmyadmin/sessions:/sessions"
   openresty:
     image: openresty/openresty:xenial
     links:
       - php-fpm
       - php-publication
       - php-api
-      - php-ebank
       - php-shop
+      - phpmyadmin
     depends_on:
       - redis
       - php-fpm
@@ -130,7 +126,7 @@ services:
     volumes:
       - "./nginx/logs:/usr/local/openresty/nginx/logs"
       - "./nginx/conf:/usr/local/openresty/nginx/conf"
-      - "./nginx/cert/newgls:/usr/local/openresty/nginx/cert/"
+      - "./nginx/cert/xingstation:/usr/local/openresty/nginx/cert/"
       - "../jing-saas/:/var/www/html"
       - "../piwik/:/var/www/piwik"
       - "../freecart/:/var/www/freecart"
@@ -140,9 +136,11 @@ services:
       - "../xingstation-publication/:/var/www/xingstation-publication"
       - "../xingstation-web/:/var/www/xingstation-web"
       - "../xingstation-shop/:/var/www/xingstation-shop"
-      - "../ebank/:/var/www/ebank"
+      - "../phpmyadmin/:/var/www/phpmyadmin"
     environment:
       - SERVER_NAME
+    external_links:
+      - phpmyadmin:phpmyadmin
     networks:
       frontend:
         aliases:

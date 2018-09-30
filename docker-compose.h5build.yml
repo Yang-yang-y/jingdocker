@@ -8,4 +8,4 @@ services:
       # - top
       - sh
       - -c
-      - "yarn --production && yarn run preprod"
+      - "yarn --production && yarn run release"
