@@ -78,8 +78,8 @@ services:
     cap_add:
       - "SYS_PTRACE"
     volumes:
-      - "../xingstation-api/supervisor:/etc/supervisor.d"
-      - "../xingstation-api/:/var/www/html"
+      - "../xingstation-openapi/supervisor:/etc/supervisor.d"
+      - "../xingstation-openapi/:/var/www/html"
     networks:
       - backend
   php-shop:
@@ -87,8 +87,6 @@ services:
     links:
       - mysql
       - redis
-    extra_hosts:
-      - "github.com:101.95.12.138"
     cap_add:
       - "SYS_PTRACE"
     volumes:
@@ -144,7 +142,7 @@ services:
       - "../freecart/:/var/www/freecart"
       - "../jingweb/:/var/www/jingweb"
       - "../xingstation_activity/:/var/www/xingstation_activity"
-      - "../xingstation-api/:/var/www/xingstation-api"
+      - "../xingstation-openapi/:/var/www/xingstation-openapi"
       - "../xingstation-publication/:/var/www/xingstation-publication"
       - "../xingstation-web/:/var/www/xingstation-web"
       - "../xingstation-shop/:/var/www/xingstation-shop"
