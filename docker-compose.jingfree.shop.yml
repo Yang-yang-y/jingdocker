@@ -1,0 +1,64 @@
+version: '3'
+
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge
+
+services:
+  mysql:
+    image: mysql:5.7
+    command:
+      - mysqld
+      - "--character-set-server=utf8mb4"
+      - "--collation-server=utf8mb4_unicode_ci"
+    ports:
+      - "43306:3306"
+    volumes:
+      - "./mysql/data:/var/lib/mysql"
+      - "./mysql/conf:/etc/mysql/conf.d"
+      - "./mysql/init:/docker-entrypoint-initdb.d"
+    networks:
+      - backend
+  redis:
+    image: redis:alpine
+    ports:
+      - "46379:6379"
+    networks:
+      - backend
+  php-shop:
+    image: registry.cn-hangzhou.aliyuncs.com/image_home/jingdocker:1.8.6
+    links:
+      - mysql
+      - redis
+    cap_add:
+      - "SYS_PTRACE"
+    volumes:
+      - "../jingfree-shop/:/var/www/html"
+    networks:
+      - backend
+  openresty:
+    image: openresty/openresty:xenial
+    links:
+      - php-shop
+    depends_on:
+      - redis
+      - php-shop
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "./nginx/logs:/usr/local/openresty/nginx/logs"
+      - "./nginx/conf:/usr/local/openresty/nginx/conf"
+      - "../jingfree-shop/:/var/www/jingfree-shop"
+    networks:
+      frontend:
+        aliases:
+          - ebank.jingfree.top
+      backend:
+        aliases:
+          - ebank.jingfree.top
+
+
+
