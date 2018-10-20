@@ -41,10 +41,10 @@ services:
   openresty:
     image: openresty/openresty:xenial
     links:
-      - php-shop
+      - php-jingfree_shop
     depends_on:
       - redis
-      - php-shop
+      - php-jingfree_shop
     ports:
       - "80:80"
       - "443:443"
