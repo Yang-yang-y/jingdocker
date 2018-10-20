@@ -27,7 +27,7 @@ services:
       - "46379:6379"
     networks:
       - backend
-  php-shop:
+  php-jingfree_shop:
     image: registry.cn-hangzhou.aliyuncs.com/image_home/jingdocker:1.8.6
     links:
       - mysql
