@@ -23,6 +23,8 @@ services:
       - "./mysql/data:/var/lib/mysql"
       - "./mysql/conf:/etc/mysql/conf.d"
       - "./mysql/init:/docker-entrypoint-initdb.d"
+    ports:
+      - 43306:3306
     networks:
       - backend
   mongo:
@@ -52,9 +54,6 @@ services:
     volumes:
       - "../jing-saas/supervisor/:/etc/supervisor.d"
       - "../jing-saas/:/var/www/html"
-      - "../piwik/:/var/www/piwik"
-      - "../freecart/:/var/www/freecart"
-      - "../jingweb/:/var/www/jingweb"
     networks:
       - backend
   php-publication:
@@ -93,28 +92,6 @@ services:
       - "../xingstation-shop/:/var/www/html"
     networks:
       - backend
-  phpmyadmin:
-      image: phpmyadmin/phpmyadmin
-      links:
-        - mysql:db
-      networks:
-        - backend
-      external_links:
-        - mysql:mysql
-      volumes:
-        - "./phpmyadmin/sessions:/sessions"
-  php-crm:
-    image: registry.cn-hangzhou.aliyuncs.com/image_home/jingdocker:1.8.6
-    links:
-      - mysql
-      - redis
-    cap_add:
-      - "SYS_PTRACE"
-    volumes:
-      - "../xingstation-crm/supervisor:/etc/supervisor.d"
-      - "../xingstation-crm/:/var/www/html"
-    networks:
-      - backend
   openresty:
     image: openresty/openresty:xenial
     links:
@@ -129,7 +106,6 @@ services:
       - php-publication
       - php-api
       - php-shop
-      - php-crm
     ports:
       - "80:80"
       - "443:443"
@@ -138,20 +114,13 @@ services:
       - "./nginx/conf:/usr/local/openresty/nginx/conf"
       - "./nginx/cert/xingstation:/usr/local/openresty/nginx/cert/"
       - "../jing-saas/:/var/www/html"
-      - "../piwik/:/var/www/piwik"
-      - "../freecart/:/var/www/freecart"
-      - "../jingweb/:/var/www/jingweb"
       - "../xingstation_activity/:/var/www/xingstation_activity"
       - "../xingstation-openapi/:/var/www/xingstation-openapi"
       - "../xingstation-publication/:/var/www/xingstation-publication"
       - "../xingstation-web/:/var/www/xingstation-web"
       - "../xingstation-shop/:/var/www/xingstation-shop"
-      - "../xingstation-crm/:/var/www/xingstation-crm"
-      - "../phpmyadmin/:/var/www/phpmyadmin"
     environment:
       - SERVER_NAME
-    external_links:
-      - phpmyadmin:phpmyadmin
     networks:
       frontend:
         aliases:
