@@ -77,8 +77,8 @@ services:
     cap_add:
       - "SYS_PTRACE"
     volumes:
-      - "../xingstation-openapi/supervisor:/etc/supervisor.d"
-      - "../xingstation-openapi/:/var/www/html"
+      - "../xingstation-api/supervisor:/etc/supervisor.d"
+      - "../xingstation-api/:/var/www/html"
     networks:
       - backend
   php-shop:
@@ -114,7 +114,7 @@ services:
       - "./nginx/cert/xingstation:/usr/local/openresty/nginx/cert/"
       - "../jing-saas/:/var/www/html"
       - "../xingstation_activity/:/var/www/xingstation_activity"
-      - "../xingstation-openapi/:/var/www/xingstation-openapi"
+      - "../xingstation-api/:/var/www/xingstation-openapi"
       - "../xingstation-publication/:/var/www/xingstation-publication"
       - "../xingstation-web/:/var/www/xingstation-web"
       - "../xingstation-shop/:/var/www/xingstation-shop"
