@@ -99,7 +99,6 @@ services:
       - php-publication
       - php-api
       - php-shop
-      - phpmyadmin
     depends_on:
       - redis
       - php-fpm
