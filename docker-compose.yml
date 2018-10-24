@@ -89,6 +89,7 @@ services:
     cap_add:
       - "SYS_PTRACE"
     volumes:
+      - "../xingstation-shop/supervisor:/etc/supervisor.d"
       - "../xingstation-shop/:/var/www/html"
     networks:
       - backend
