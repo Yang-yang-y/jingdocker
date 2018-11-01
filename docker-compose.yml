@@ -134,6 +134,7 @@ services:
       - "../xingstation-publication/:/var/www/xingstation-publication"
       - "../xingstation-web/:/var/www/xingstation-web"
       - "../xingstation-shop/:/var/www/xingstation-shop"
+      - "../xingstation-shop-m/:/var/www/xingstation-shop-m"
       - "../phpmyadmin/:/var/www/phpmyadmin"
     environment:
       - SERVER_NAME
