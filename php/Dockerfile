@@ -16,6 +16,7 @@ RUN pecl install redis && \
   docker-php-ext-install pdo_mysql && \
   docker-php-ext-install tokenizer && \
   docker-php-ext-install opcache && \
+  docker-php-ext-install bcmath && \
   docker-php-ext-configure gd \
     --with-gd \
     --with-freetype-dir=/usr/include/ \
@@ -26,8 +27,7 @@ RUN pecl install redis && \
     --with-libxml-dir=/usr/include/ && \
   docker-php-ext-install xmlrpc && \
   docker-php-ext-install mcrypt && \
-  docker-php-source delete && \
-  docker-php-ext-install bcmath
+  docker-php-source delete
 RUN pecl install mongodb
 RUN docker-php-ext-enable mongodb
 RUN docker-php-ext-install zip
