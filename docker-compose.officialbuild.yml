@@ -1,0 +1,13 @@
+version: '3'
+services:
+  official-build:
+    ## only to build
+    ## build a image
+    image: registry.cn-hangzhou.aliyuncs.com/homehub/node-publication
+#    build: node
+    volumes:
+      - "../actiview-official:/usr/src/app"
+    command:
+      - sh
+      - -c
+      - "yarn  && yarn   generate"
