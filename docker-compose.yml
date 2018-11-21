@@ -36,7 +36,7 @@ services:
     networks:
       - backend
   php-fpm:
-    image: registry.cn-hangzhou.aliyuncs.com/image_home/jingdocker:1.8.6
+    image: registry.cn-hangzhou.aliyuncs.com/image_home/php-publication:1.8.8
     links:
       - mysql
       - redis
@@ -54,7 +54,7 @@ services:
     networks:
       - backend
   php-publication:
-    image: registry.cn-hangzhou.aliyuncs.com/image_home/jingdocker:1.8.6
+    image: registry.cn-hangzhou.aliyuncs.com/image_home/php-publication:1.8.8
     links:
       - mysql
       - redis
@@ -67,7 +67,7 @@ services:
     networks:
       - backend
   php-api:
-    image: registry.cn-hangzhou.aliyuncs.com/image_home/jingdocker:1.8.6
+    image: registry.cn-hangzhou.aliyuncs.com/image_home/php-publication:1.8.8
     links:
       - mysql
       - redis
@@ -79,7 +79,7 @@ services:
     networks:
       - backend
   php-shop:
-    image: registry.cn-hangzhou.aliyuncs.com/image_home/jingdocker:1.8.6
+    image: registry.cn-hangzhou.aliyuncs.com/image_home/php-publication:1.8.8
     links:
       - mysql
       - redis
