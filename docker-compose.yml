@@ -93,6 +93,18 @@ services:
       - "../xingstation-shop/:/var/www/html"
     networks:
       - backend
+  php-cms:
+    image: registry.cn-hangzhou.aliyuncs.com/image_home/php-publication:1.8.8
+    links:
+      - mysql
+      - redis
+      - mongo
+    cap_add:
+      - "SYS_PTRACE"
+    volumes:
+      - "../xingstation-cms/:/var/www/html"
+    networks:
+      - backend
   openresty:
     image: openresty/openresty:xenial
     links:
