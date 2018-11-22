@@ -105,19 +105,19 @@ services:
       - "../xingstation-cms/:/var/www/html"
     networks:
       - backend
+  php-ebank:
+    image: registry.cn-hangzhou.aliyuncs.com/image_home/php-publication:1.8.8
+    links:
+      - mysql
+      - redis
+    cap_add:
+      - "SYS_PTRACE"
+    volumes:
+      - "../ebank/:/var/www/html"
+    networks:
+      - backend
   openresty:
     image: openresty/openresty:xenial
-    links:
-      - php-fpm
-      - php-publication
-      - php-api
-      - php-shop
-    depends_on:
-      - redis
-      - php-fpm
-      - php-publication
-      - php-api
-      - php-shop
     ports:
       - "80:80"
       - "443:443"
@@ -132,6 +132,7 @@ services:
       - "../xingstation-web/:/var/www/xingstation-web"
       - "../xingstation-shop/:/var/www/xingstation-shop"
       - "../xingstation-cms/:/var/www/xingstation-cms"
+      - "../ebank/:/var/www/ebank"
     environment:
       - SERVER_NAME
     networks:
