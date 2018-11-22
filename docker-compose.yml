@@ -132,13 +132,13 @@ services:
       - "./nginx/logs:/usr/local/openresty/nginx/logs"
       - "./nginx/conf:/usr/local/openresty/nginx/conf"
       - "./nginx/cert/xingstation:/usr/local/openresty/nginx/cert/"
-      - "../jing-saas/:/var/www/html"
       - "../xingstation_activity/:/var/www/xingstation_activity"
-      - "../xingstation-api/:/var/www/xingstation-openapi"
-      - "../xingstation-publication/:/var/www/xingstation-publication"
       - "../xingstation-web/:/var/www/xingstation-web"
-      - "../xingstation-shop/:/var/www/xingstation-shop"
-      - "../xingstation-cms/:/var/www/xingstation-cms"
+      - "../xingstation-api/:/var/www/open"
+      - "../xingstation-publication/:/var/www/ad"
+      - "../xingstation-shop/:/var/www/shop"
+      - "../xingstation-cms/:/var/www/cms"
+      - "../jing-saas/:/var/www/saas"
       - "../ebank/:/var/www/ebank"
     environment:
       - SERVER_NAME
