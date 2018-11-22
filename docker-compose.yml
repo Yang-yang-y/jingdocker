@@ -131,6 +131,7 @@ services:
       - "../xingstation-publication/:/var/www/xingstation-publication"
       - "../xingstation-web/:/var/www/xingstation-web"
       - "../xingstation-shop/:/var/www/xingstation-shop"
+      - "../xingstation-cms/:/var/www/xingstation-cms"
     environment:
       - SERVER_NAME
     networks:
