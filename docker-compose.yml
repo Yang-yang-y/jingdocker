@@ -118,6 +118,13 @@ services:
       - backend
   openresty:
     image: openresty/openresty:xenial
+    links:
+      - php-api
+      - php-cms
+      - php-ebank
+      - php-fpm
+      - php-publication
+      - php-shop
     ports:
       - "80:80"
       - "443:443"
