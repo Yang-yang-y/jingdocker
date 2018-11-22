@@ -93,6 +93,19 @@ services:
       - "../xingstation-shop/:/var/www/html"
     networks:
       - backend
+  php-cms:
+    image: registry.cn-hangzhou.aliyuncs.com/image_home/jingdocker:1.8.6
+    links:
+      - mysql
+      - redis
+      - mongo
+    cap_add:
+      - "SYS_PTRACE"
+    volumes:
+      - "../xingstation-cms/supervisor:/etc/supervisor.d"
+      - "../xingstation-cms/:/var/www/html"
+    networks:
+      - backend
   openresty:
     image: openresty/openresty:xenial
     links:
@@ -100,12 +113,14 @@ services:
       - php-publication
       - php-api
       - php-shop
+      - php-cms
     depends_on:
       - redis
       - php-fpm
       - php-publication
       - php-api
       - php-shop
+      - php-cms
     ports:
       - "80:80"
       - "443:443"
@@ -119,6 +134,7 @@ services:
       - "../xingstation-publication/:/var/www/xingstation-publication"
       - "../xingstation-web/:/var/www/xingstation-web"
       - "../xingstation-shop/:/var/www/xingstation-shop"
+      - "../xingstation-cms/:/var/www/xingstation-cms"
     environment:
       - SERVER_NAME
     networks:
