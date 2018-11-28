@@ -31,6 +31,8 @@ services:
       - mongod
     volumes:
       - "./mongo/data:/data/db"
+    networks:
+      - backend
   redis:
     image: redis:alpine
     networks:
