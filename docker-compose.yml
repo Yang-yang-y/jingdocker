@@ -35,6 +35,8 @@ services:
       - "47017:27017"
     volumes:
       - "./mongo/data:/data/db"
+    networks:
+      - backend
   redis:
     image: redis:alpine
     ports:
