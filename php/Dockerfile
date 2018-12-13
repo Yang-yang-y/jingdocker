@@ -2,7 +2,7 @@ FROM php:7.1-fpm-alpine
 MAINTAINER Larryzhang <zhangyang@jingfree.com>
 # modify the repo to aliyun
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/' /etc/apk/repositories
-RUN apk --no-cache add curl git  openssh openssl pcre-dev tini bash vim  freetype libpng libjpeg-turbo freetype-dev libpng-dev libjpeg-turbo-dev  libmcrypt-dev supervisor libxml2-dev autoconf g++ make  openssl-dev automake  libtool
+RUN apk --no-cache add  su-exec busybox-suid curl git  openssh openssl pcre-dev tini bash vim  freetype libpng libjpeg-turbo freetype-dev libpng-dev libjpeg-turbo-dev  libmcrypt-dev supervisor libxml2-dev autoconf g++ make  openssl-dev automake  libtool
 COPY composer /usr/local/bin/composer
 RUN composer config -g repo.packagist composer https://packagist.phpcomposer.com
 
@@ -35,12 +35,9 @@ RUN docker-php-ext-install zip
 ADD ./laravel.ini /usr/local/etc/php/conf.d
 ADD ./laravel.pool.conf /usr/local/etc/php-fpm.d/www.conf
 COPY ./opcache.ini /usr/local/etc/php/conf.d/opcache.ini
-##TODO copy supervisor config
 COPY ./docker-php-entrypoint.sh /usr/local/bin/docker-php-entrypoint
 RUN chmod 0777 /usr/local/bin/docker-php-entrypoint
 
-#COPY docker-entrypoint.sh /docker-entrypoint.sh
-RUN echo '101.95.12.138 http://github.com' >> /etc/hosts
-RUN echo '*       *       *       *       *       php /var/www/html/artisan schedule:run >> /dev/null 2>&1' >> /var/spool/cron/crontabs/root 2>&1
+RUN su-exec www-data:82 /bin/echo '*       *       *       *       *   su-exec www-data:82   php /var/www/html/artisan schedule:run >> /dev/null 2>&1' >> /var/spool/cron/crontabs/www-data 2>&1
 RUN crond
 

@@ -13,6 +13,8 @@ if [ "${1#-}" != "$1" ]; then
 fi
 
 supervisord -c /etc/supervisord.conf
+su-exec www-data:82 crond
+cd /var/www/html && chown -R www-data:www-data storage 
 
-
+chown -R www-data:www-data /var/spool/cron/crontabs/www-data
 exec "$@"
