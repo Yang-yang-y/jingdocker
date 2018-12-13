@@ -69,7 +69,7 @@ services:
     networks:
       - backend
   php-api:
-    image: registry.cn-hangzhou.aliyuncs.com/image_home/php-publication:1.8.8
+    image: registry.cn-hangzhou.aliyuncs.com/image_home/php-publication:2.0
     links:
       - mysql
       - redis
