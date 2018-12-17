@@ -1,11 +1,9 @@
 version: '3'
-
 networks:
   frontend:
     driver: bridge
   backend:
     driver: bridge
-
 services:
   parse-server-android:
     #build: .
@@ -19,7 +17,7 @@ services:
       PARSE_SERVER_DATABASE_URI: mongodb://mongo:27017/parse
       PARSE_SERVER_CLIENT_KEY: jingfree_android
       PARSE_SERVER_JAVASCRIPT_KEY: jingfree_android
-    links:
+    external_links:
       - mongo
     networks:
       - backend
@@ -35,7 +33,7 @@ services:
       PARSE_SERVER_DATABASE_URI: mongodb://mongo:27017/parse_server_web
       PARSE_SERVER_CLIENT_KEY: jingfree_web
       PARSE_SERVER_JAVASCRIPT_KEY: jingfree_web
-    links:
+    external_links:
       - mongo
     networks:
       - backend
