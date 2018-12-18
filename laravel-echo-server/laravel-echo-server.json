@@ -1,5 +1,5 @@
 {
-  "authHost": "localhost",
+  "authHost": "http://openresty",
   "authEndpoint": "/broadcasting/auth",
   "clients": [],
   "database": "redis",
