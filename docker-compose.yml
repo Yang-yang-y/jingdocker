@@ -8,7 +8,7 @@ networks:
 
 services:
   mysql:
-    image: mysql:5.6
+    image: mysql:5.7
     command:
       - mysqld
       - "--character-set-server=utf8mb4"
@@ -93,6 +93,19 @@ services:
       - "../xingstation-shop/:/var/www/html"
     networks:
       - backend
+  php-cms:
+    image: registry.cn-hangzhou.aliyuncs.com/image_home/php-publication:1.8.8
+    links:
+      - mysql
+      - redis
+      - mongo
+    cap_add:
+      - "SYS_PTRACE"
+    volumes:
+      - "../xingstation-cms/supervisor:/etc/supervisor.d"
+      - "../xingstation-cms/:/var/www/html"
+    networks:
+      - backend
   phpmyadmin:
       image: phpmyadmin/phpmyadmin
       links:
@@ -111,11 +124,13 @@ services:
       - php-api
       - php-shop
       - phpmyadmin
+      - php-cms
     depends_on:
       - redis
       - php-fpm
       - php-publication
       - php-api
+      - php-cms
     ports:
       - "10.47.99.65:80:80"
       - "443:443"
@@ -136,6 +151,7 @@ services:
       - "../xingstation-process-mana/:/var/www/xingstation-process-mana"
       - "../xingstation-shop-m/:/var/www/xingstation-shop-m"
       - "../phpmyadmin/:/var/www/phpmyadmin"
+      - "../xingstation-cms/:/var/www/xingstation-cms"
     environment:
       - SERVER_NAME
     external_links:
@@ -147,6 +163,3 @@ services:
       backend:
         aliases:
           - ebank.jingfree.top
-
-
-
