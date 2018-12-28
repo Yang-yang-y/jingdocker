@@ -1,5 +1,5 @@
 {
-  "authHost": env ('LARAVEL_ECHO_SERVER_AUTH_HOST'),
+  "authHost": "http://api.shop.jingfree.top",
   "authEndpoint": "/broadcasting/auth",
   "clients": [],
   "database": "redis",
