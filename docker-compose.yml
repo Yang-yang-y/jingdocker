@@ -108,28 +108,28 @@ services:
     networks:
       - backend
   phpmyadmin:
-      image: phpmyadmin/phpmyadmin
-      links:
-        - mysql:db
-      networks:
-        - backend
-      external_links:
-        - mysql:mysql
-      volumes:
-        - "./phpmyadmin/sessions:/sessions"
+    image: phpmyadmin/phpmyadmin
+    links:
+      - mysql:db
+    networks:
+      - backend
+    external_links:
+      - mysql:mysql
+    volumes:
+      - "./phpmyadmin/sessions:/sessions"
   laravel-echo-server:
-        image: registry.cn-hangzhou.aliyuncs.com/image_home/laravel-echo-server:1.1
-#        build: ./laravel-echo-server
-        volumes:
-          - ./laravel-echo-server/laravel-echo-server.json:/app/laravel-echo-server.json:ro
-        ports:
-          - "6001:6001"
-        links:
-          - redis
-          - openresty
-        networks:
-          - frontend
-          - backend
+    image: registry.cn-hangzhou.aliyuncs.com/image_home/laravel-echo-server:1.1
+#    build: ./laravel-echo-server
+    volumes:
+      - ./laravel-echo-server/laravel-echo-server.json:/app/laravel-echo-server.json:ro
+    ports:
+      - "6001:6001"
+    links:
+      - redis
+      - openresty
+    networks:
+      - frontend
+      - backend
   openresty:
     image: openresty/openresty:xenial
     links:
