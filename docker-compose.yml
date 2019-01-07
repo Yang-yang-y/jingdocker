@@ -119,7 +119,7 @@ services:
     volumes:
       - "./phpmyadmin/sessions:/sessions"
   laravel-echo-server:
-    image: registry.cn-hangzhou.aliyuncs.com/image_home/laravel-echo-server:1.1
+    image: registry.cn-hangzhou.aliyuncs.com/image_home/laravel-echo-server:1.2
     volumes:
       - ./laravel-echo-server/laravel-echo-server.json:/app/laravel-echo-server.json:ro
     ports:
