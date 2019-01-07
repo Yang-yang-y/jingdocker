@@ -1,5 +1,5 @@
 {
-  "authHost": "http://openresty",
+  "authHost": "http://papi.newgls.cn",
   "authEndpoint": "/broadcasting/auth",
   "clients": [],
   "database": "redis",
