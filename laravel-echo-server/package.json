@@ -1,5 +1,5 @@
 {
-  "name": "laravel-echo-server-docker",
+  "name": "http://papi.newgls.cn",
   "description": "Docker container for running laravel-echo-server",
   "version": "0.0.1",
   "license": "MIT",
