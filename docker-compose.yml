@@ -118,8 +118,8 @@ services:
     volumes:
       - "./phpmyadmin/sessions:/sessions"
   laravel-echo-server:
-    image: registry.cn-hangzhou.aliyuncs.com/image_home/laravel-echo-server:1.1
-#    build: ./laravel-echo-server
+    image: laravel-echo-server:v1.0
+    # build: ./laravel-echo-server
     volumes:
       - ./laravel-echo-server/laravel-echo-server.json:/app/laravel-echo-server.json:ro
     ports:
@@ -164,7 +164,7 @@ services:
       backend:
         aliases:
           - ebank.jingfree.top
-          - api.shop.jingfree.top
+          - api.ad.jingfree.top
 
 
 
