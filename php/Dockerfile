@@ -27,10 +27,14 @@ RUN pecl install redis && \
     --with-libxml-dir=/usr/include/ && \
   docker-php-ext-install xmlrpc && \
   docker-php-ext-install mcrypt && \
+  pecl install mongodb && \
+  docker-php-ext-enable mongodb && \
+  docker-php-ext-install zip && \
+  apt-get install -y libc-client-dev libkrb5-dev && \
+  rm -r /var/lib/apt/lists/* && \
+  docker-php-ext-configure imap --with-kerberos --with-imap-ssl && \
+  docker-php-ext-install imap && \
   docker-php-source delete
-RUN pecl install mongodb
-RUN docker-php-ext-enable mongodb
-RUN docker-php-ext-install zip
 
 
 ADD ./laravel.ini /usr/local/etc/php/conf.d
