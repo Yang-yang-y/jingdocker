@@ -30,7 +30,7 @@ RUN pecl install redis && \
   pecl install mongodb && \
   docker-php-ext-enable mongodb && \
   docker-php-ext-install zip && \
-  docker-php-ext-configure imap --with-kerberos --with-imap-ssl && \
+  docker-php-ext-configure imap --with-imap --with-imap-ssl && \
   docker-php-ext-install imap && \
   docker-php-source delete
 
