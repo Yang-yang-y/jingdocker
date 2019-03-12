@@ -43,21 +43,6 @@ services:
       - "46379:6379"
     networks:
       - backend
-  php-fpm:
-    image: registry.cn-hangzhou.aliyuncs.com/image_home/php-publication:1.8.8
-    links:
-      - mysql
-      - redis
-      - mongo
-    env_file:
-      - ./php/jingsaas.env
-    cap_add:
-      - "SYS_PTRACE"
-    volumes:
-      - "../jing-saas/supervisor/:/etc/supervisor.d"
-      - "../jing-saas/:/var/www/html"
-    networks:
-      - backend
   php-publication:
     image: registry.cn-hangzhou.aliyuncs.com/image_home/php-publication:1.8.8
     links:
@@ -107,27 +92,7 @@ services:
       - "../xingstation-cms/:/var/www/html"
     networks:
       - backend
-  php-ebank:
-    image: registry.cn-hangzhou.aliyuncs.com/image_home/php-publication:1.8.8
-    links:
-      - mysql
-      - redis
-    cap_add:
-      - "SYS_PTRACE"
-    volumes:
-      - "../ebank/:/var/www/html"
-    networks:
-      - backend
-  phpmyadmin:
-      image: phpmyadmin/phpmyadmin
-      links:
-        - mysql:db
-      networks:
-        - backend
-      external_links:
-        - mysql:mysql
-      volumes:
-        - "./phpmyadmin/sessions:/sessions"
+
   laravel-echo-server:
         image: registry.cn-hangzhou.aliyuncs.com/image_home/laravel-echo-server:1.1
         volumes:
@@ -145,8 +110,6 @@ services:
     links:
       - php-api
       - php-cms
-      - php-ebank
-      - php-fpm
       - php-publication
       - php-shop
     ports:
@@ -165,17 +128,10 @@ services:
       - "../xingstation-publication/:/var/www/ad"
       - "../xingstation-shop/:/var/www/shop"
       - "../xingstation-cms/:/var/www/cms"
-      - "../jing-saas/:/var/www/saas"
-      - "../ebank/:/var/www/ebank"
     environment:
       - SERVER_NAME
     networks:
-      frontend:
-        aliases:
-          - ebank.jingfree.top
-      backend:
-        aliases:
-          - ebank.jingfree.top
+      - backend
 
 
 
