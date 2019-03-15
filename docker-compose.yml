@@ -157,6 +157,7 @@ services:
       - "../freecart/:/var/www/freecart"
       - "../jingweb/:/var/www/jingweb"
       - "../xingstation_activity/:/var/www/xingstation_activity"
+      - "../mobile-h5/:/var/www/mobile-h5"
       - "../actiview-official/:/var/www/actiview-official"
       - "../xingstation-api/:/var/www/xingstation-api"
       - "../xingstation-publication/:/var/www/xingstation-publication"

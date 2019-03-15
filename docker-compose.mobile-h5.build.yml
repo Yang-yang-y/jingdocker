@@ -1,0 +1,12 @@
+version: '3'
+services:
+  mobile-h5-build:
+    ## only to build
+    ## build a image
+    image: registry.cn-hangzhou.aliyuncs.com/homehub/jingnode:1.0.0
+    volumes:
+      - "../mobile-h5/:/usr/src/app"
+    command:
+      - sh
+      - -c
+      - "yarn build"
