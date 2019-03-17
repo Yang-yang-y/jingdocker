@@ -20,7 +20,7 @@ services:
       - MYSQL_ROOT_PASSWORD=passw0rd
       - TZ="Asia/Shanghai"
     volumes:
-      - "./mysql/data:/var/lib/mysql"
+      - "../../mysql/data:/var/lib/mysql"
       - "./mysql/conf:/etc/mysql/conf.d"
       - "./mysql/init:/docker-entrypoint-initdb.d"
     networks:
@@ -53,8 +53,6 @@ services:
       - "../jing-saas/supervisor/:/etc/supervisor.d"
       - "../jing-saas/:/var/www/html"
       - "../piwik/:/var/www/piwik"
-      - "../freecart/:/var/www/freecart"
-      - "../jingweb/:/var/www/jingweb"
     networks:
       - backend
   php-publication:
@@ -146,7 +144,7 @@ services:
       - php-api
       - php-cms
     ports:
-      - "10.47.99.65:80:80"
+      - "80:80"
       - "443:443"
     volumes:
       - "./nginx/logs:/usr/local/openresty/nginx/logs"
@@ -154,8 +152,6 @@ services:
       - "./nginx/cert/newgls:/usr/local/openresty/nginx/cert/"
       - "../jing-saas/:/var/www/html"
       - "../piwik/:/var/www/piwik"
-      - "../freecart/:/var/www/freecart"
-      - "../jingweb/:/var/www/jingweb"
       - "../xingstation_activity/:/var/www/xingstation_activity"
       - "../mobile-h5/:/var/www/mobile-h5"
       - "../actiview-official/:/var/www/actiview-official"
