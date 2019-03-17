@@ -1,13 +1,13 @@
 {
     "apps": [
       {
-        "serverURL": "http://120.27.144.62:1337/parse",
+        "serverURL": "http://120.27.138.242:1337/parse",
         "appId": "jingfree_android",
         "masterKey": "aa9YOWvTxxCY2RXT",
         "appName": "jingfree_android"
       },
       {
-        "serverURL": "http://120.27.144.62:2337/parse",
+        "serverURL": "http://120.27.138.242:2337/parse",
         "appId": "jingfree_web",
         "masterKey": "6aXXk4Oask7rFTLM",
         "appName": "jingfree_web"
