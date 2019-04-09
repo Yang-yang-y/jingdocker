@@ -69,6 +69,17 @@ services:
       - "../xingstation-publication/:/var/www/html"
     networks:
       - backend
+  php-ebank:
+    image: registry.cn-hangzhou.aliyuncs.com/image_home/php-publication:1.8.8
+    links:
+      - mysql
+      - redis
+    cap_add:
+      - "SYS_PTRACE"
+    volumes:
+      - "../ebank/:/var/www/html"
+    networks:
+      - backend
   php-api:
     image: registry.cn-hangzhou.aliyuncs.com/image_home/php-publication:1.8.8
     links:
@@ -123,6 +134,7 @@ services:
     links:
       - php-api
       - php-cms
+      - php-ebank
       - php-publication
       - php-shop
     ports:
@@ -142,10 +154,16 @@ services:
       - "../xingstation-shop/:/var/www/shop"
       - "../xingstation-cms/:/var/www/cms"
       - "../jing-saas/:/var/www/saas"
+      - "../ebank/:/var/www/ebank"
     environment:
       - SERVER_NAME
     networks:
-      - backend
+      frontend:
+        aliases:
+          - ebank.jingfree.top
+      backend:
+        aliases:
+          - ebank.jingfree.top
 
 
 
