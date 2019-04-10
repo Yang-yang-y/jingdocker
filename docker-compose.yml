@@ -156,7 +156,7 @@ services:
       - "../piwik/:/var/www/piwik"
       - "../xingstation_activity/:/var/www/xingstation_activity"
       - "../mobile-h5/:/var/www/mobile-h5"
-      - "../mobile-h5/:/var/www/mobile-saas"
+      - "../mobile-saas/:/var/www/mobile-saas"
       - "../actiview-official/:/var/www/actiview-official"
       - "../xingstation-api/:/var/www/xingstation-api"
       - "../xingstation-publication/:/var/www/xingstation-publication"
