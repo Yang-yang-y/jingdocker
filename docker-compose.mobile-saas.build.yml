@@ -9,4 +9,4 @@ services:
     command:
       - sh
       - -c
-      - "yarn && yarn build"
+      - "yarn && yarn buildtest"
