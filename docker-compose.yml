@@ -164,7 +164,7 @@ services:
       - "../xingstation-web/:/var/www/xingstation-web"
       - "../xingstation-shop/:/var/www/xingstation-shop"
       - "../xingstation-process-mana/:/var/www/xingstation-process-mana"
-      - "../xingstation-shop-m/:/var/www/xingstation-shop-m"
+      - "../actiview-shop-m/:/var/www/actiview-shop-m"
       - "../phpmyadmin/:/var/www/phpmyadmin"
       - "../xingstation-cms/:/var/www/xingstation-cms"
     environment:

@@ -5,8 +5,8 @@ services:
     ## build a image
     image: registry.cn-hangzhou.aliyuncs.com/homehub/node-publication
     volumes:
-      - "../xingstation-shop-m/:/usr/src/app"
+      - "../actiview-shop-m/:/usr/src/app"
     command:
       - sh
       - -c
-      - "yarn && yarn run testing"
+      - "yarn && yarn build"
