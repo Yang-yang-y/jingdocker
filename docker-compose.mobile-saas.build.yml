@@ -1,0 +1,12 @@
+version: '3'
+services:
+  mobile-saas-build:
+    ## only to build
+    ## build a image
+    image: registry.cn-hangzhou.aliyuncs.com/homehub/node-publication
+    volumes:
+      - "../mobile-saas/:/usr/src/app"
+    command:
+      - sh
+      - -c
+      - "yarn && yarn buildtest"
