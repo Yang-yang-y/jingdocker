@@ -134,7 +134,7 @@ services:
       - "../xingstation-publication/:/var/www/xingstation-publication"
       - "../xingstation-web/:/var/www/xingstation-web"
       - "../mobile-h5/:/var/www/mobile-h5"
-       - "../mobile-saas/:/var/www/mobile-saas"
+      - "../mobile-saas/:/var/www/mobile-saas"
       - "../xingstation-shop/:/var/www/xingstation-shop"
       - "../xingstation-shop-m/:/var/www/xingstation-shop-m"
       - "../xingstation-process-mana/:/var/www/xingstation-process-mana"
