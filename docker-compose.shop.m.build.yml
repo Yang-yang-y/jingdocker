@@ -9,4 +9,4 @@ services:
     command:
       - sh
       - -c
-      - "yarn && yarn test"
+      - "yarn && yarn testing"
