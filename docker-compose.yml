@@ -117,7 +117,18 @@ services:
       - "../xingstation-cms/:/var/www/html"
     networks:
       - backend
-
+  php-october:
+    image: registry.cn-hangzhou.aliyuncs.com/image_home/php-publication:1.8.8
+    links:
+      - mysql
+      - redis
+      - mongo
+    cap_add:
+      - "SYS_PTRACE"
+    volumes:
+      - "../october/:/var/www/html"
+    networks:
+      - backend
   laravel-echo-server:
     image: registry.cn-hangzhou.aliyuncs.com/image_home/laravel-echo-server:1.1
     volumes:
@@ -138,6 +149,7 @@ services:
       - php-ebank
       - php-publication
       - php-shop
+      - php-october
     ports:
       - "80:80"
       - "443:443"
@@ -156,6 +168,7 @@ services:
       - "../xingstation-cms/:/var/www/cms"
       - "../jing-saas/:/var/www/saas"
       - "../ebank/:/var/www/ebank"
+      - "../october/:/var/www/october"
     environment:
       - SERVER_NAME
     networks:
