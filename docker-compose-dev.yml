@@ -1,0 +1,191 @@
+version: '3'
+
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge
+
+volumes:
+  app-publication-sync:
+    external: true
+  app-shop-sync:
+    external: true
+
+services:
+  mysql:
+    image: mysql:5.7
+    command:
+      - mysqld
+      - "--character-set-server=utf8mb4"
+      - "--collation-server=utf8mb4_unicode_ci"
+    environment:
+      - MYSQL_DATABASE=jingsaas
+      - MYSQL_USER=jingfree
+      - MYSQL_PASSWORD=passw0rd
+      - MYSQL_ROOT_PASSWORD=passw0rd
+      - TZ="Asia/Shanghai"
+    volumes:
+      - "./mysql/data:/var/lib/mysql"
+      - "./mysql/conf:/etc/mysql/conf.d"
+      - "./mysql/init:/docker-entrypoint-initdb.d"
+    ports:
+      - 43306:3306
+    networks:
+      - backend
+  mongo:
+    image: mongo:3.4.2
+    command:
+      - mongod
+    ports:
+      - "47017:27017"
+    volumes:
+      - "./mongo/data:/data/db"
+    networks:
+      - backend
+  redis:
+    image: redis:alpine
+    ports:
+      - "46379:6379"
+    networks:
+      - backend
+  php-jingsaas:
+    image: registry.cn-hangzhou.aliyuncs.com/image_home/php-publication:1.8.8
+    links:
+      - mysql
+      - redis
+      - mongo
+    cap_add:
+      - "SYS_PTRACE"
+    volumes:
+      - "../jing-saas/supervisor:/etc/supervisor.d"
+      - "../jing-saas/:/var/www/html"
+    networks:
+      - backend
+  php-publication:
+    image: registry.cn-hangzhou.aliyuncs.com/image_home/php-publication:1.8.8
+    links:
+      - mysql
+      - redis
+      - mongo
+    cap_add:
+      - "SYS_PTRACE"
+    volumes:
+      - "../xingstation-publication/supervisor:/etc/supervisor.d"
+      - "app-publication-sync:/var/www/html:nocopy"
+    networks:
+      - backend
+  php-ebank:
+    image: registry.cn-hangzhou.aliyuncs.com/image_home/php-publication:1.8.8
+    links:
+      - mysql
+      - redis
+    cap_add:
+      - "SYS_PTRACE"
+    volumes:
+      - "../ebank/supervisor:/etc/supervisor.d"
+      - "../ebank/:/var/www/html"
+    networks:
+      - backend
+  php-api:
+    image: registry.cn-hangzhou.aliyuncs.com/image_home/php-publication:1.8.8
+    links:
+      - mysql
+      - redis
+    cap_add:
+      - "SYS_PTRACE"
+    volumes:
+      - "../xingstation-api/supervisor:/etc/supervisor.d"
+      - "../xingstation-api/:/var/www/html"
+    networks:
+      - backend
+  php-shop:
+    image: registry.cn-hangzhou.aliyuncs.com/image_home/php-publication:1.8.8
+    links:
+      - mysql
+      - redis
+    cap_add:
+      - "SYS_PTRACE"
+    volumes:
+      - "../xingstation-shop/supervisor:/etc/supervisor.d"
+      - "app-shop-sync:/var/www/html:nocopy"
+    networks:
+      - backend
+  php-cms:
+    image: registry.cn-hangzhou.aliyuncs.com/image_home/php-publication:1.8.8
+    links:
+      - mysql
+      - redis
+      - mongo
+    cap_add:
+      - "SYS_PTRACE"
+    volumes:
+      - "../xingstation-cms/:/var/www/html"
+    networks:
+      - backend
+  php-october:
+    image: registry.cn-hangzhou.aliyuncs.com/image_home/php-publication:1.8.8
+    links:
+      - mysql
+      - redis
+      - mongo
+    cap_add:
+      - "SYS_PTRACE"
+    volumes:
+      - "../october/:/var/www/html"
+    networks:
+      - backend
+  laravel-echo-server:
+    image: registry.cn-hangzhou.aliyuncs.com/image_home/laravel-echo-server:1.1
+    volumes:
+      - ./laravel-echo-server/laravel-echo-server.json:/app/laravel-echo-server.json:ro
+    ports:
+      - "6001:6001"
+    links:
+      - redis
+      - openresty
+    networks:
+      - frontend
+      - backend
+  openresty:
+    image: openresty/openresty:xenial
+    links:
+      - php-api
+      - php-cms
+      - php-ebank
+      - php-publication
+      - php-shop
+      - php-october
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "./nginx/logs:/usr/local/openresty/nginx/logs"
+      - "./nginx/conf:/usr/local/openresty/nginx/conf"
+      - "./nginx/cert/xingstation:/usr/local/openresty/nginx/cert/"
+      - "../xingstation_activity/:/var/www/xingstation_activity"
+      - "../xingstation-web/:/var/www/xingstation-web"
+      - "../xingstation-shop-pc/:/var/www/xingstation-shop-pc"
+      - "../xingstation-shop-m/:/var/www/xingstation-shop-m"
+      - "../xingstation-process-mana/:/var/www/xingstation-process-mana"
+      - "../xingstation-api/:/var/www/open"
+      - "app-publication-sync:/var/www/ad:nocopy"
+      - "app-shop-sync:/var/www/shop:nocopy"
+      - "../xingstation-cms/:/var/www/cms"
+      - "../jing-saas/:/var/www/saas"
+      - "../ebank/:/var/www/ebank"
+      - "../october/:/var/www/october"
+    environment:
+      - SERVER_NAME
+    networks:
+      frontend:
+        aliases:
+          - ebank.jingfree.top
+      backend:
+        aliases:
+          - ebank.jingfree.top
+
+
+
+
+

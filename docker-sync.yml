@@ -1,0 +1,18 @@
+version: "2"
+options:
+  verbose: false
+syncs:
+  app-publication-sync:
+    sync_args: ['-perms=0']
+    sync_strategy: 'unison'
+    sync_host_ip: 'auto'
+    sync_excludes: ['.gitignore', '.idea/*','.git/*', '*.coffee', '*.scss', '*.sass','*.log']
+    src: '../xingstation-publication'
+    sync_userid: 82
+  app-shop-sync:
+    sync_args: ['-perms=0']
+    sync_strategy: 'unison'
+    sync_host_ip: 'auto'
+    sync_excludes: ['.gitignore', '.idea/*','.git/*', '*.coffee', '*.scss', '*.sass','*.log']
+    src: '../xingstation-shop'
+    sync_userid: 82
