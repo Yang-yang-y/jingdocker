@@ -95,6 +95,19 @@ services:
       - "../xingstation-shop/:/var/www/html"
     networks:
       - backend
+  php-cms:
+    image: registry.cn-hangzhou.aliyuncs.com/image_home/php-publication:1.8.8
+    links:
+      - mysql
+      - redis
+      - mongo
+    cap_add:
+      - "SYS_PTRACE"
+    volumes:
+      - "../xingstation-cms/supervisor:/etc/supervisor.d"
+      - "../xingstation-cms/:/var/www/html"
+    networks:
+      - backend
   phpmyadmin:
       image: phpmyadmin/phpmyadmin
       links:
@@ -113,11 +126,13 @@ services:
       - php-api
       - php-shop
       - phpmyadmin
+      - php-cms
     depends_on:
       - redis
       - php-fpm
       - php-publication
       - php-api
+      - php-cms
     ports:
       - "80:80"
       - "443:443"
@@ -136,9 +151,11 @@ services:
       - "../mobile-h5/:/var/www/mobile-h5"
       - "../mobile-saas/:/var/www/mobile-saas"
       - "../xingstation-shop/:/var/www/xingstation-shop"
+      - "../cms-web/:/var/www/cms-web"
       - "../xingstation-shop-m/:/var/www/xingstation-shop-m"
       - "../xingstation-process-mana/:/var/www/xingstation-process-mana"
       - "../phpmyadmin/:/var/www/phpmyadmin"
+      -  "../xingstation-cms/:/var/www/xingstation-cms"
     environment:
       - SERVER_NAME
     external_links:
