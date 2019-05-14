@@ -104,8 +104,8 @@ services:
     cap_add:
       - "SYS_PTRACE"
     volumes:
-      - "../xingstation-cms/supervisor:/etc/supervisor.d"
-      - "../xingstation-cms/:/var/www/html"
+      - "../cms-backend/supervisor:/etc/supervisor.d"
+      - "../cms-backend/:/var/www/html"
     networks:
       - backend
   phpmyadmin:
@@ -155,7 +155,7 @@ services:
       - "../xingstation-shop-m/:/var/www/xingstation-shop-m"
       - "../xingstation-process-mana/:/var/www/xingstation-process-mana"
       - "../phpmyadmin/:/var/www/phpmyadmin"
-      -  "../xingstation-cms/:/var/www/xingstation-cms"
+      - "../cms-backend/:/var/www/cms-backend"
     environment:
       - SERVER_NAME
     external_links:
