@@ -43,8 +43,13 @@ services:
       - "46379:6379"
     networks:
       - backend
+<<<<<<< Updated upstream
   php-jingsaas:
     image: registry.cn-hangzhou.aliyuncs.com/image_home/php-publication:1.8.8
+=======
+  php-fpm:
+    image: registry.cn-hangzhou.aliyuncs.com/image_home/php-publication:3.2.1
+>>>>>>> Stashed changes
     links:
       - mysql
       - redis
@@ -57,7 +62,7 @@ services:
     networks:
       - backend
   php-publication:
-    image: registry.cn-hangzhou.aliyuncs.com/image_home/php-publication:1.8.8
+    image: registry.cn-hangzhou.aliyuncs.com/image_home/php-publication:3.2.1
     links:
       - mysql
       - redis
@@ -94,7 +99,7 @@ services:
     networks:
       - backend
   php-shop:
-    image: registry.cn-hangzhou.aliyuncs.com/image_home/php-publication:1.8.8
+    image: registry.cn-hangzhou.aliyuncs.com/image_home/php-publication:3.2.1
     links:
       - mysql
       - redis
@@ -106,7 +111,7 @@ services:
     networks:
       - backend
   php-cms:
-    image: registry.cn-hangzhou.aliyuncs.com/image_home/php-publication:1.8.8
+    image: registry.cn-hangzhou.aliyuncs.com/image_home/php-publication:3.2.1
     links:
       - mysql
       - redis
