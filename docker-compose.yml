@@ -93,6 +93,7 @@ services:
       - "SYS_PTRACE"
     volumes:
       - "../xingstation-shop/:/var/www/html"
+      - "../xingstation-shop/supervisor:/etc/supervisor.d"
     networks:
       - backend
   php-cms:
