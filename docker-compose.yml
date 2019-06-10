@@ -178,7 +178,7 @@ services:
       - "../xingstation-process-mana/:/var/www/xingstation-process-mana"
       - "../xingstation-api/:/var/www/open"
       - "../xingstation-publication/:/var/www/ad"
-      - "../xingstation-publication-swoole/:/var/www/ad_swoole"
+      - "../xingstation-publication-swoole/:/var/www/xingstation-publication-swoole"
       - "../xingstation-shop/:/var/www/shop"
       - "../xingstation-cms/:/var/www/cms"
       - "../jing-saas/:/var/www/saas"
