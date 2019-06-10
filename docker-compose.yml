@@ -69,7 +69,7 @@ services:
       - "../xingstation-publication/:/var/www/html"
     networks:
       - backend
-    php-publication-s:
+  php-publication-s:
     image: registry.cn-hangzhou.aliyuncs.com/image_home/php-publication:3.2.2
     links:
       - mysql
