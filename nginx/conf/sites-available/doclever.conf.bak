@@ -1,0 +1,13 @@
+ server {
+
+      listen 80 ;
+      listen [::]:80;
+      server_name doclever.xingstation.test;
+
+     location / {
+         proxy_pass http://192.168.1.133:10000;
+        }
+
+ }
+
+
