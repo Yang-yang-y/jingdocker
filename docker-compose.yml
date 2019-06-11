@@ -176,6 +176,7 @@ services:
       - "../xingstation-shop-pc/:/var/www/xingstation-shop-pc"
       - "../xingstation-shop-m/:/var/www/xingstation-shop-m"
       - "../xingstation-process-mana/:/var/www/xingstation-process-mana"
+      - "../xingstation-process-mana-swoole/:/var/www/xingstation-process-mana-swoole"
       - "../xingstation-api/:/var/www/open"
       - "../xingstation-publication/:/var/www/ad"
       - "../xingstation-publication-swoole/:/var/www/xingstation-publication-swoole"
